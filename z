@@ -1,6 +1,6 @@
 local library = {}
 
-function library:Notification(textTitle, textDesc, textBtn)
+function library:Notification(textTitle, textDesc)
     local Notification = Instance.new("ScreenGui")
     Notification.Name = "Notification"
     Notification.DisplayOrder = 10
@@ -9,7 +9,7 @@ function library:Notification(textTitle, textDesc, textBtn)
 
     local Frame = Instance.new("Frame")
     Frame.Parent = Notification
-    Frame.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+    Frame.BackgroundColor3 = Color3.fromRGB(37, 31, 248)
     Frame.Size = UDim2.new(0, 300, 0, 150)
     Frame.Position = UDim2.new(0.5, -150, 0.5, -75)
     Frame.BorderSizePixel = 0
@@ -25,7 +25,7 @@ function library:Notification(textTitle, textDesc, textBtn)
 
     local DropShadowHolder = Instance.new("Frame")
     DropShadowHolder.Parent = Notification
-    DropShadowHolder.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+    DropShadowHolder.BackgroundColor3 = Color3.fromRGB(37, 31, 248) -- Changed color
     DropShadowHolder.Size = UDim2.new(1, 10, 1, 10)
     DropShadowHolder.Position = UDim2.new(-5, 0, -5, 0)
     DropShadowHolder.ZIndex = Notification.ZIndex - 1
@@ -34,7 +34,7 @@ function library:Notification(textTitle, textDesc, textBtn)
     DropShadow.Parent = DropShadowHolder
     DropShadow.BackgroundTransparency = 1
     DropShadow.Size = UDim2.new(1, 0, 1, 0)
-    DropShadow.Image = "rbxassetid://123456789" -- Replace with your asset ID for the drop shadow
+    DropShadow.Image = "rbxassetid://17457903813" -- Replace with your asset ID for the drop shadow
 
     local Title = Instance.new("TextLabel")
     Title.Parent = Frame
@@ -55,22 +55,28 @@ function library:Notification(textTitle, textDesc, textBtn)
     NotificationDesc.Size = UDim2.new(1, -20, 0, 40)
     NotificationDesc.TextWrapped = true
 
-    local OkayBtn = Instance.new("TextButton")
-    OkayBtn.Parent = Frame
-    OkayBtn.BackgroundColor3 = Color3.fromRGB(55, 55, 55)
-    OkayBtn.Position = UDim2.new(0, 10, 1, -35)
-    OkayBtn.Size = UDim2.new(0, 100, 0, 30)
-    OkayBtn.Font = Enum.Font.GothamSemibold
-    OkayBtn.FontSize = Enum.FontSize.Size14
-    OkayBtn.Text = textBtn
+    local ProgressBar = Instance.new("Frame")
+    ProgressBar.Parent = Frame
+    ProgressBar.BackgroundColor3 = Color3.fromRGB(37, 31, 248) -- Changed color
+    ProgressBar.Size = UDim2.new(1, -20, 0, 5)
+    ProgressBar.Position = UDim2.new(0, 10, 0, 110)
+    ProgressBar.BorderSizePixel = 0
 
-    local OkayCorner = Instance.new("UICorner")
-    OkayCorner.Parent = OkayBtn
-    OkayCorner.CornerRadius = UDim.new(0, 5)
+    local UICorner_ProgressBar = Instance.new("UICorner")
+    UICorner_ProgressBar.Parent = ProgressBar
+    UICorner_ProgressBar.CornerRadius = UDim.new(0, 2.5)
 
-    OkayBtn.MouseButton1Click:Connect(function()
-        Notification:Destroy()
-    end)
+    local function destroyNotification()
+        for i = 5, 0, -1 do
+            wait(1)
+            ProgressBar.Size = UDim2.new(1, -20 - (i * 60), 0, 5)
+            if i == 0 then
+                Notification:Destroy()
+            end
+        end
+    end
+
+    destroyNotification()
 
     return Notification
 end
