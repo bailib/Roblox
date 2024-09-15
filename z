@@ -1,5 +1,3 @@
-local lib = {}
-
 function lib:Notification(textTitle, textDesc)
     local Notification = Instance.new("ScreenGui")
     Notification.Name = "Notification"
@@ -25,7 +23,7 @@ function lib:Notification(textTitle, textDesc)
 
     local DropShadowHolder = Instance.new("Frame")
     DropShadowHolder.Parent = Notification
-    DropShadowHolder.BackgroundColor3 = Color3.fromRGB(37, 31, 248) -- Changed color
+    DropShadowHolder.BackgroundColor3 = Color3.fromRGB(37, 31, 248)
     DropShadowHolder.Size = UDim2.new(1, 10, 1, 10)
     DropShadowHolder.Position = UDim2.new(-5, 0, -5, 0)
     DropShadowHolder.ZIndex = Notification.ZIndex - 1
@@ -34,7 +32,8 @@ function lib:Notification(textTitle, textDesc)
     DropShadow.Parent = DropShadowHolder
     DropShadow.BackgroundTransparency = 1
     DropShadow.Size = UDim2.new(1, 0, 1, 0)
-    DropShadow.Image = "rbxassetid://17457903813" -- Replace with your asset ID for the drop shadow
+    -- Ensure you have a valid asset ID for the drop shadow
+    DropShadow.Image = "rbxassetid://17457903813"
 
     local Title = Instance.new("TextLabel")
     Title.Parent = Frame
@@ -57,7 +56,7 @@ function lib:Notification(textTitle, textDesc)
 
     local ProgressBar = Instance.new("Frame")
     ProgressBar.Parent = Frame
-    ProgressBar.BackgroundColor3 = Color3.fromRGB(37, 31, 248) -- Changed color
+    ProgressBar.BackgroundColor3 = Color3.fromRGB(37, 31, 248)
     ProgressBar.Size = UDim2.new(1, -20, 0, 5)
     ProgressBar.Position = UDim2.new(0, 10, 0, 110)
     ProgressBar.BorderSizePixel = 0
@@ -66,19 +65,19 @@ function lib:Notification(textTitle, textDesc)
     UICorner_ProgressBar.Parent = ProgressBar
     UICorner_ProgressBar.CornerRadius = UDim.new(0, 2.5)
 
+    -- Function to destroy the notification after 5 seconds
     local function destroyNotification()
         for i = 5, 0, -1 do
+            -- Update the progress bar size here if you want a countdown effect
             wait(1)
-            ProgressBar.Size = UDim2.new(1, -20 - (i * 60), 0, 5)
             if i == 0 then
                 Notification:Destroy()
             end
         end
     end
 
+    -- Start the countdown
     destroyNotification()
 
     return Notification
 end
-
-return lib
