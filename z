@@ -1,0 +1,78 @@
+local library = {}
+
+function library:Notification(textTitle, textDesc, textBtn)
+    local Notification = Instance.new("ScreenGui")
+    Notification.Name = "Notification"
+    Notification.DisplayOrder = 10
+    Notification.Enabled = true
+    Notification.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+    local Frame = Instance.new("Frame")
+    Frame.Parent = Notification
+    Frame.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+    Frame.Size = UDim2.new(0, 300, 0, 150)
+    Frame.Position = UDim2.new(0.5, -150, 0.5, -75)
+    Frame.BorderSizePixel = 0
+
+    local UICorner = Instance.new("UICorner")
+    UICorner.Parent = Frame
+    UICorner.CornerRadius = UDim.new(0, 10)
+
+    local UIListLayout = Instance.new("UIListLayout")
+    UIListLayout.Parent = Frame
+    UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+    UIListLayout.Padding = UDim.new(0, 10)
+
+    local DropShadowHolder = Instance.new("Frame")
+    DropShadowHolder.Parent = Notification
+    DropShadowHolder.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+    DropShadowHolder.Size = UDim2.new(1, 10, 1, 10)
+    DropShadowHolder.Position = UDim2.new(-5, 0, -5, 0)
+    DropShadowHolder.ZIndex = Notification.ZIndex - 1
+
+    local DropShadow = Instance.new("ImageLabel")
+    DropShadow.Parent = DropShadowHolder
+    DropShadow.BackgroundTransparency = 1
+    DropShadow.Size = UDim2.new(1, 0, 1, 0)
+    DropShadow.Image = "rbxassetid://123456789" -- Replace with your asset ID for the drop shadow
+
+    local Title = Instance.new("TextLabel")
+    Title.Parent = Frame
+    Title.Text = textTitle
+    Title.Font = Enum.Font.GothamSemibold
+    Title.FontSize = Enum.FontSize.Size18
+    Title.TextXAlignment = Enum.TextXAlignment.Left
+    Title.Position = UDim2.new(0, 10, 0, 10)
+    Title.Size = UDim2.new(1, -20, 0, 20)
+
+    local NotificationDesc = Instance.new("TextLabel")
+    NotificationDesc.Parent = Frame
+    NotificationDesc.Text = textDesc
+    NotificationDesc.Font = Enum.Font.Gotham
+    NotificationDesc.FontSize = Enum.FontSize.Size14
+    NotificationDesc.TextXAlignment = Enum.TextXAlignment.Left
+    NotificationDesc.Position = UDim2.new(0, 10, 0, 40)
+    NotificationDesc.Size = UDim2.new(1, -20, 0, 40)
+    NotificationDesc.TextWrapped = true
+
+    local OkayBtn = Instance.new("TextButton")
+    OkayBtn.Parent = Frame
+    OkayBtn.BackgroundColor3 = Color3.fromRGB(55, 55, 55)
+    OkayBtn.Position = UDim2.new(0, 10, 1, -35)
+    OkayBtn.Size = UDim2.new(0, 100, 0, 30)
+    OkayBtn.Font = Enum.Font.GothamSemibold
+    OkayBtn.FontSize = Enum.FontSize.Size14
+    OkayBtn.Text = textBtn
+
+    local OkayCorner = Instance.new("UICorner")
+    OkayCorner.Parent = OkayBtn
+    OkayCorner.CornerRadius = UDim.new(0, 5)
+
+    OkayBtn.MouseButton1Click:Connect(function()
+        Notification:Destroy()
+    end)
+
+    return Notification
+end
+
+return library
