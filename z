@@ -1,6 +1,6 @@
-local library = {}
+local lib = {}
 
-function library:Notification(textTitle, textDesc)
+function lib:Notification(textTitle, textDesc)
     local Notification = Instance.new("ScreenGui")
     Notification.Name = "Notification"
     Notification.DisplayOrder = 10
@@ -81,4 +81,4 @@ function library:Notification(textTitle, textDesc)
     return Notification
 end
 
-return library
+return lib
