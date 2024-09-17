@@ -311,7 +311,7 @@ function TabElements:Image(imageAssetId)
 local Image = Instance.new("ImageLabel")
 Image.Size = UDim2.new(1, 0, 0, 50)
 Image.BackgroundTransparency = 1
-Image.Image = imageAssetId
+Image.Image = "rbxassetid://"..imageAssetId
 Image.Name = "InfoImage"
 Image.Parent = Tab
 local UICorner = Instance.new("UICorner")
