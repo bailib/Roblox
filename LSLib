@@ -1,6 +1,6 @@
-local LSUI = {}
+local LSLib = {}
 
-function LSTeamUI:MakeWindowTitle(Title)
+function LSLib:MakeWindowTitle(Title)
     local LSUI = Instance.new("ScreenGui")
     LSUI.Size = UDim2.new(0, 450, 0, 300)
     LSUI.DisplayOrder = 100
@@ -78,10 +78,12 @@ function LSTeamUI:MakeWindowTitle(Title)
     TabsContainer.BackgroundTransparency = 1
     TabsContainer.ZIndex = 11
     TabsContainer.Parent = TabsOpenContainer
+    return TabsContainer
+end
 
 local MakeLSTab = {}
 
-function MakeLSTab:CreateLSTab(Title, image, Visible)
+function MakeLSTab:CreateLSTab(Title, image, Visible, TabsContainer)
     local OpenLSTab = Instance.new("TextButton")
     OpenLSTab.Size = UDim2.new(1, 0, 0, 25)
     OpenLSTab.BackgroundTransparency = 1
@@ -94,9 +96,9 @@ function MakeLSTab:CreateLSTab(Title, image, Visible)
 
     local TabIcon = Instance.new("ImageLabel")
     TabIcon.Size = UDim2.new(0, 20, 0, 20)
-    TabIcon.Position = UDim2.new(1, -20 - TabIcon.Size.X.Offset, 0, (OpenLSTab.Size.Y.Offset - TabIcon.Size.Y.Offset) / 2)
+    TabIcon.Position = UDim2.new(1, -20, 0, (OpenLSTab.Size.Y.Offset - TabIcon.Size.Y.Offset) / 2)
     TabIcon.BackgroundTransparency = 1
-    TabIcon.Image = image
+    TabIcon.Image = "rbxassetid://" .. image
     TabIcon.Parent = OpenLSTab
 
     local Tab = Instance.new("ScrollingFrame")
@@ -110,10 +112,11 @@ function MakeLSTab:CreateLSTab(Title, image, Visible)
     OpenLSTab.MouseButton1Click:Connect(function()
         Tab.Visible = true
     end)
+end
 
 local LSTabEle = {}
 
-function LSTabEle:LSCreateInfo(Title)
+function LSTabEle:LSCreateInfo(Title, TabsContainer)
     local LSInfoFrame = Instance.new("Frame")
     LSInfoFrame.Size = UDim2.new(1, 0, 0, 150)
     LSInfoFrame.BackgroundTransparency = 1
@@ -135,7 +138,7 @@ function LSTabEle:LSCreateInfo(Title)
     LSInfoUICorner.Parent = LSInfoFrame
 end
 
-function LSTabEle:LSCreateButton(Title, text, image, callback)
+function LSTabEle:LSCreateButton(Title, image, callback, TabsContainer)
     local LSButtonFrame = Instance.new("Frame")
     LSButtonFrame.Size = UDim2.new(1, 0, 0, 30)
     LSButtonFrame.BackgroundTransparency = 1
@@ -146,7 +149,7 @@ function LSTabEle:LSCreateButton(Title, text, image, callback)
     LSButtonTextButton.Size = UDim2.new(1, -40, 1, 0)
     LSButtonTextButton.Position = UDim2.new(0, 0, 0, 0)
     LSButtonTextButton.BackgroundTransparency = 1
-    LSButtonTextButton.Text = text
+    LSButtonTextButton.Text = Title
     LSButtonTextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
     LSButtonTextButton.Font = 9
     LSButtonTextButton.TextSize = 14
@@ -169,7 +172,7 @@ function LSTabEle:LSCreateButton(Title, text, image, callback)
     end)
 end
 
-function LSTabEle:LSCreateToggle(Title, text, enabled, callback)
+function LSTabEle:LSCreateToggle(Title, enabled, callback, TabsContainer)
     local LSToggleFrame = Instance.new("Frame")
     LSToggleFrame.Size = UDim2.new(1, 0, 0, 25)
     LSToggleFrame.BackgroundTransparency = 1
@@ -224,7 +227,7 @@ function LSTabEle:LSCreateToggle(Title, text, enabled, callback)
     updateToggleImagePosition(enabled)
 end
 
-function LSTabEle:LSCreateCombobox(Title, options, callback)
+function LSTabEle:LSCreateCombobox(Title, options, callback, TabsContainer)
     local LSComboBox = Instance.new("ImageButton")
     LSComboBox.Size = UDim2.new(1, 0, 0, 25)
     LSComboBox.BackgroundTransparency = 1
@@ -287,7 +290,7 @@ function LSTabEle:LSCreateCombobox(Title, options, callback)
     end)
 end
 
-function LSTabEle:LSCreateTextbox(Title, defaultText, callback)
+function LSTabEle:LSCreateTextbox(Title, defaultText, callback, TabsContainer)
     local TextBoxFrame = Instance.new("Frame")
     TextBoxFrame.Size = UDim2.new(1, 0, 0, 50)
     TextBoxFrame.BackgroundTransparency = 1
@@ -320,12 +323,7 @@ function LSTabEle:LSCreateTextbox(Title, defaultText, callback)
     end)
 end
 
-function LSTabEle:LSCreateSlider(Title, default, min, max, precise, callback)
-    local min = min or 1
-    local max = max or 10
-    local default = default or min
-    local precise = precise or false
-
+function LSTabEle:LSCreateSlider(Title, default, min, max, precise, callback, TabsContainer)
     local SliderFrame = Instance.new("Frame")
     SliderFrame.Size = UDim2.new(1, 0, 0, 60)
     SliderFrame.BackgroundTransparency = 1
@@ -388,7 +386,7 @@ function LSTabEle:LSCreateSlider(Title, default, min, max, precise, callback)
     end)
 end
 
-function LSTabEle:LSCreateImage(imageAssetId)
+function LSTabEle:LSCreateImage(imageAssetId, TabsContainer)
     local Image = Instance.new("ImageLabel")
     Image.Size = UDim2.new(1, 0, 0, 50)
     Image.BackgroundTransparency = 1
@@ -404,4 +402,4 @@ return LSTabEle
 end
 return MakeLSTab
 end
-return LSUI
+return LSLib
