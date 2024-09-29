@@ -24,11 +24,45 @@ local Logo = Instance.new("ImageLabel")
 Logo.Name = "Logo"
 Logo.BackgroundTransparency = 1
 Logo.Size = UDim2.new(0, 50, 0, 50)
-Logo.Image = "rbxassetid://17005353956"
+Logo.Image = "rbxassetid://18216647696"
 Logo.Position = UDim2.new(1, -70, 0, 10)
 Logo.Parent = Back
 Instance.new("UICorner", Logo).CornerRadius = UDim.new(0, 8)
 
+local QQIcon = Instance.new("ImageButton")
+QQIcon.Name = "QQIcon"
+QQIcon.Size = UDim2.new(0, 32, 0, 32)
+QQIcon.BackgroundTransparency = 1
+QQIcon.Position = UDim2.new(1, -106, 0, 10)
+QQIcon.Parent = Back
+Instance.new("UICorner", QQIcon).CornerRadius = UDim.new(0, 8)
+QQIcon.Image = "https://github.com/XiaoyeQWQ/what/raw/refs/heads/main/QQicon.png"
+QQIcon.MouseButton1Click:Connect(function()
+setclipboard("QQ Group:https://qm.qq.com/q/b1OQYx4FmS")
+end)
+
+local StudioIcon = Instance.new("ImageButton")
+StudioIcon.Name = "StudioIcon"
+StudioIcon.Size = UDim2.new(0, 32, 0, 32)
+StudioIcon.BackgroundTransparency = 1
+StudioIcon.Position = UDim2.new(1, -142, 0, 10)
+StudioIcon.Parent = Back
+Instance.new("UICorner", StudioIcon).CornerRadius = UDim.new(0, 8)
+StudioIcon.Image = "https://github.com/XiaoyeQWQ/what/raw/refs/heads/main/LSLogo.png"
+StudioIcon.MouseButton1Click:Connect(function()
+setclipboard("LSTM Archive Scripts best free scripts")
+end)
+local VideoIcon = Instance.new("ImageButton")
+VideoIcon.Name = "VideoIcon"
+VideoIcon.Size = UDim2.new(0, 32, 0, 32)
+VideoIcon.BackgroundTransparency = 1
+VideoIcon.Position = UDim2.new(1, -178, 0, 10)
+VideoIcon.Parent = Back
+Instance.new("UICorner", VideoIcon).CornerRadius = UDim.new(0, 8)
+VideoIcon.Image = "https://github.com/XiaoyeQWQ/what/raw/refs/heads/main/Videoicon.png"
+VideoIcon.MouseButton1Click:Connect(function()
+setclipboard("https://m.bilibili.com/space/1232506416?from=search")
+end)
 --[[
 local X = Instance.new("TextButton")
 X.Name = "X"
@@ -307,6 +341,76 @@ pcall(Cally, On)
 end)
 end
 
+function TabElements:Dropdown(Title, Options, Cally)
+    local DropdownFrame = Instance.new("Frame")
+    DropdownFrame.Size = UDim2.new(1, 0, 0, 25)
+    DropdownFrame.BackgroundColor3 = Color3.fromHex("1D1D27")
+    DropdownFrame.BorderSizePixel = 0
+    DropdownFrame.Parent = Tab
+    Instance.new("UICorner", DropdownFrame).CornerRadius = UDim.new(0, 8)
+
+    local TextLabel = Instance.new("TextLabel")
+    TextLabel.Size = UDim2.new(0, 200, 1, 0)
+    TextLabel.BackgroundTransparency = 1
+    TextLabel.TextColor3 = Color3.fromHex("7A7A84")
+    TextLabel.Text = Title
+    TextLabel.Font = 9
+    TextLabel.TextScaled = true
+    TextLabel.TextXAlignment = 0
+    TextLabel.Position = UDim2.new(0, 8, 0, 0)
+    TextLabel.Parent = DropdownFrame
+
+    local ExpandText = Instance.new("TextLabel")
+    ExpandText.Size = UDim2.new(0, 20, 1, 0)
+    ExpandText.BackgroundTransparency = 1
+    ExpandText.TextColor3 = Color3.fromHex("7A7A84")
+    ExpandText.Text = "+"
+    ExpandText.Font = 9
+    ExpandText.TextScaled = true
+    ExpandText.TextXAlignment = 1
+    ExpandText.Position = UDim2.new(1, -25, 0, 0)
+    ExpandText.Parent = DropdownFrame
+
+    local DropdownList = Instance.new("Frame")
+    DropdownList.Size = UDim2.new(1, -20, 0, 0)
+    DropdownList.BackgroundColor3 = Color3.fromHex("1D1D27")
+    DropdownList.BorderSizePixel = 0
+    DropdownList.Position = UDim2.new(0, 1, 1, 0)
+    DropdownList.Visible = false
+    DropdownList.Parent = DropdownFrame
+    Instance.new("UICorner", DropdownList).CornerRadius = UDim.new(0, 8)
+
+    for _, Option in ipairs(Options) do
+        local OptionButton = Instance.new("TextButton")
+        OptionButton.Size = UDim2.new(1, 0, 0, 25)
+        OptionButton.BackgroundColor3 = Color3.fromHex("1D1D27")
+        OptionButton.BorderSizePixel = 0
+        OptionButton.Text = Option
+        OptionButton.TextColor3 = Color3.fromHex("7A7A84")
+        OptionButton.Font = 9
+        OptionButton.TextScaled = true
+        OptionButton.TextXAlignment = 0
+        OptionButton.Position = UDim2.new(0, 8, 0, 0)
+        OptionButton.Parent = DropdownList
+        Instance.new("UICorner", OptionButton).CornerRadius = UDim.new(0, 8)
+        OptionButton.MouseButton1Click:Connect(function()
+            pcall(Cally, Option)
+            DropdownList.Visible = false
+            ExpandText.Text = "+"
+        end)
+    end
+
+    ExpandText.MouseButton1Click:Connect(function()
+        if DropdownList.Visible then
+            DropdownList.Visible = false
+            ExpandText.Text = "+"
+        else
+            DropdownList.Visible = true
+            ExpandText.Text = "-"
+        end
+    end)
+end
+
 function TabElements:Textbox(Title, Cally)
     local TextboxFrame = Instance.new("Frame")
     TextboxFrame.Size = UDim2.new(1, 0, 0, 25)
@@ -316,7 +420,7 @@ function TabElements:Textbox(Title, Cally)
     Instance.new("UICorner", TextboxFrame).CornerRadius = UDim.new(0, 8)
 
     local TextLabel = Instance.new("TextLabel")
-    TextLabel.Size = UDim2.new(1, 0, 0, 25)
+    TextLabel.Size = UDim2.new(0, 100, 1, 0)
     TextLabel.BackgroundTransparency = 1
     TextLabel.TextColor3 = Color3.fromHex("7A7A84")
     TextLabel.Text = Title
@@ -327,12 +431,12 @@ function TabElements:Textbox(Title, Cally)
     TextLabel.Parent = TextboxFrame
 
     local TextBox = Instance.new("TextBox")
-    TextBox.Size = UDim2.new(1, -20, 1, 0)
+    TextBox.Size = UDim2.new(1, -118, 1, 0)
     TextBox.Font = 9
     TextBox.TextColor3 = Color3.fromHex("7A7A84")
     TextBox.BackgroundColor3 = Color3.fromHex("1D1D27")
     TextBox.BorderSizePixel = 0
-    TextBox.Position = UDim2.new(0, 8, 0, 0)
+    TextBox.Position = UDim2.new(0, 108, 0, 0)
     TextBox.Parent = TextboxFrame
 
     TextBox.Changed:Connect(function(Property)
@@ -340,80 +444,6 @@ function TabElements:Textbox(Title, Cally)
             pcall(Cally, TextBox.Text)
         end
     end)
-end
-
-function TabElements:Combobox(Title, Options, DefaultIndex, Cally)
-    local ComboboxFrame = Instance.new("Frame")
-    ComboboxFrame.Size = UDim2.new(1, 0, 0, 25)
-    ComboboxFrame.BackgroundColor3 = Color3.fromHex("1D1D27")
-    ComboboxFrame.BorderSizePixel = 0
-    ComboboxFrame.Parent = Tab
-    Instance.new("UICorner", ComboboxFrame).CornerRadius = UDim.new(0, 8)
-
-    local Label = Instance.new("TextLabel")
-    Label.Size = UDim2.new(1, 0, 0, 25)
-    Label.BackgroundTransparency = 1
-    Label.TextColor3 = Color3.fromHex("7A7A84")
-    Label.Text = Title
-    Label.Font = 9
-    Label.TextScaled = true
-    Label.TextXAlignment = 0
-    Label.Position = UDim2.new(0, 8, 0, 0)
-    Label.Parent = ComboboxFrame
-
-    local Dropdown = Instance.new("TextButton")
-    Dropdown.Size = UDim2.new(1, 0, 1, 0)
-    Dropdown.BackgroundColor3 = Color3.fromHex("1D1D27")
-    Dropdown.BorderSizePixel = 0
-    Dropdown.Font = 9
-    Dropdown.TextColor3 = Color3.fromHex("7A7A84")
-    Dropdown.Text = Options[DefaultIndex] or ""
-    Dropdown.TextXAlignment = 0
-    Dropdown.Position = UDim2.new(0, 8, 0, 0)
-    Dropdown.Parent = ComboboxFrame
-
-    local function updateText()
-        Dropdown.Text = Options[DefaultIndex] or ""
-    end
-
-    Dropdown.MouseButton1Click:Connect(function()
-        local Open = not Dropdown.Open
-        Dropdown.Open = Open
-        for _, Button in pairs(ComboboxFrame:GetChildren()) do
-            if Button:IsA("TextButton") and Button.Name ~= "DropdownButton" then
-                Button:Destroy()
-            end
-        end
-        if Open then
-            for i, v in pairs(Options) do
-                local Button = Instance.new("TextButton")
-                Button.Size = UDim2.new(1, 0, 0, 25)
-                Button.BackgroundColor3 = Color3.fromHex("1D1D27")
-                Button.BorderSizePixel = 0
-                Button.Font = 9
-                Button.TextColor3 = Color3.fromHex("7A7A84")
-                Button.Text = v
-                Button.TextXAlignment = 0
-                Button.Position = UDim2.new(0, 0, i - 1, 30)
-                Button.Parent = ComboboxFrame
-                Button.MouseButton1Click:Connect(function()
-                    DefaultIndex = i
-                    updateText()
-                    Dropdown.Open = false
-                    pcall(Cally, i)
-                end)
-            end
-        end
-    end)
-end
-
-function TabElements:Imagelabel(Image, ImageSize)
-    local ImageLabel = Instance.new("ImageLabel")
-    ImageLabel.Size = UDim2.new(0, ImageSize.x, 0, ImageSize.y)
-    ImageLabel.Image = Image
-    ImageLabel.BackgroundTransparency = 1
-    ImageLabel.Parent = Tab
-    Instance.new("UICorner", ImageLabel).CornerRadius = UDim.new(0, 8)
 end
 
 function TabElements:Slider(Title, Min, Max, Default, Cally)
@@ -425,7 +455,7 @@ function TabElements:Slider(Title, Min, Max, Default, Cally)
     Instance.new("UICorner", SliderFrame).CornerRadius = UDim.new(0, 8)
 
     local Label = Instance.new("TextLabel")
-    Label.Size = UDim2.new(1, 0, 0, 25)
+    Label.Size = UDim2.new(0, 100, 1, 0)
     Label.BackgroundTransparency = 1
     Label.TextColor3 = Color3.fromHex("7A7A84")
     Label.Text = Title
@@ -435,11 +465,21 @@ function TabElements:Slider(Title, Min, Max, Default, Cally)
     Label.Position = UDim2.new(0, 8, 0, 0)
     Label.Parent = SliderFrame
 
+    local TextBox = Instance.new("TextBox")
+    TextBox.Size = UDim2.new(0, 50, 1, 0)
+    TextBox.Font = 9
+    TextBox.TextColor3 = Color3.fromHex("7A7A84")
+    TextBox.BackgroundColor3 = Color3.fromHex("1D1D27")
+    TextBox.BorderSizePixel = 0
+    TextBox.Position = UDim2.new(0, 108, 0, 0)
+    TextBox.Text = "LSTM Archive Textbox"
+    TextBox.Parent = SliderFrame
+
     local SliderBar = Instance.new("Frame")
-    SliderBar.Size = UDim2.new(1, 0, 0, 20)
+    SliderBar.Size = UDim2.new(1, -160, 0, 20)
     SliderBar.BackgroundColor3 = Color3.fromHex("7A7A84")
     SliderBar.BorderSizePixel = 0
-    SliderBar.Position = UDim2.new(0, 0, 0, 25)
+    SliderBar.Position = UDim2.new(0, 8, 0, 25)
     SliderBar.Parent = SliderFrame
     Instance.new("UICorner", SliderBar).CornerRadius = UDim.new(0, 8)
 
@@ -452,7 +492,7 @@ function TabElements:Slider(Title, Min, Max, Default, Cally)
     Instance.new("UICorner", SliderButton).CornerRadius = UDim.new(0, 8)
 
     local SliderValue = Instance.new("TextLabel")
-    SliderValue.Size = UDim2.new(1, 0, 0, 25)
+    SliderValue.Size = UDim2.new(1, -160, 0, 25)
     SliderValue.BackgroundTransparency = 1
     SliderValue.TextColor3 = Color3.fromHex("7A7A84")
     SliderValue.Text = tostring(Default)
