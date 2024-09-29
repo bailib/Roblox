@@ -1,405 +1,486 @@
-local LSLib = {}
+local Lib = {}
+function Lib:MakePrototypeLibrary(Title)
 
-function LSLib:MakeWindowTitle(Title)
-    local LSUI = Instance.new("ScreenGui")
-    LSUI.Size = UDim2.new(0, 450, 0, 300)
-    LSUI.DisplayOrder = 100
+local SG = Instance.new("ScreenGui")
+SG.Name = "AstralicPrototype"
+SG.DisplayOrder = math.huge
+SG.ResetOnSpawn = false
+SG.IgnoreGuiInset = true
+SG.Parent = gethui()
 
-    local TitleUI = Instance.new("TextLabel")
-    TitleUI.Size = UDim2.new(0, 200, 0, 30)
-    TitleUI.Position = UDim2.new(0, 0, 0, 0)
-    TitleUI.Text = Title
-    TitleUI.Font = 9
-    TitleUI.TextColor3 = Color3.fromRGB(0, 173, 239)
-    TitleUI.TextSize = 14
-    TitleUI.BackgroundTransparency = 1
-    TitleUI.Parent = LSUI
+local Back = Instance.new("Frame")
+Back.Name = "Back"
+Back.BackgroundColor3 = Color3.fromHex("121318")
+Back.Size = UDim2.new(0, 450, 0, 300)
+Back.Draggable = true
+Back.BorderSizePixel = 0
+Back.Position = UDim2.new(0.5, 0, 0.7, 0)
+Back.Active = true
+Back.AnchorPoint = Vector2.new(0.5, 0.5)
+Back.Parent = SG
+Instance.new("UICorner", Back).CornerRadius = UDim.new(0, 8)
 
-    local Logo = Instance.new("ImageLabel")
-    Logo.Size = UDim2.new(0, 30, 0, 30)
-    Logo.Position = UDim2.new(1, -30, 0, 0)
-    Logo.Image = "rbxassetid://9178187770"
-    Logo.Parent = LSUI
+local Logo = Instance.new("ImageLabel")
+Logo.Name = "Logo"
+Logo.BackgroundTransparency = 1
+Logo.Size = UDim2.new(0, 50, 0, 50)
+Logo.Image = "rbxassetid://17005353956"
+Logo.Position = UDim2.new(1, -70, 0, 10)
+Logo.Parent = Back
+Instance.new("UICorner", Logo).CornerRadius = UDim.new(0, 8)
 
-    local QQGroup = Instance.new("ImageButton")
-    QQGroup.Size = UDim2.new(0, 30, 0, 30)
-    QQGroup.Position = UDim2.new(1, -60, 0, 0)
-    QQGroup.Image = "rbxassetid://16759385019"
-    QQGroup.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-    QQGroup.Parent = LSUI
+--[[
+local X = Instance.new("TextButton")
+X.Name = "X"
+X.BackgroundTransparency = 1
+X.Font = 9
+X.TextColor3 = Color3.fromHex("AFA1FD")
+X.Size = UDim2.new(0, 30, 0, 30)
+X.Text = "X"
+X.TextScaled = true
+X.Position = UDim2.new(0, 410, 0, 10)
+X.Parent = Back
+X.MouseButton1Click:Connect(function()
+SG:Destroy()
+end)
+]]
 
-    local Video = Instance.new("ImageButton")
-    Video.Size = UDim2.new(0, 30, 0, 30)
-    Video.Position = UDim2.new(1, -90, 0, 0)
-    Video.Image = "rbxassetid://5027762797"
-    Video.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-    Video.Parent = LSUI
+local TitleUI = Instance.new("TextLabel")
+TitleUI.Name = "TitleUI"
+TitleUI.Size = UDim2.new(0, 400, 0, 30)
+TitleUI.Text = Title
+TitleUI.TextColor3 = Color3.fromHex("AFA1FD")
+TitleUI.Font = 9
+TitleUI.Position = UDim2.new(0, 10, 0, 10)
+TitleUI.TextScaled = true
+TitleUI.BackgroundTransparency = 1
+TitleUI.TextXAlignment = 0
+TitleUI.Parent = Back
 
-    local DiscordGroup = Instance.new("ImageButton")
-    DiscordGroup.Size = UDim2.new(0, 30, 0, 30)
-    DiscordGroup.Position = UDim2.new(1, -120, 0, 0)
-    DiscordGroup.Image = "rbxassetid://16759385019"
-    DiscordGroup.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-    DiscordGroup.Parent = LSUI
+--[[
+local ToggleUI = Instance.new("TextButton")
+ToggleUI.Name = "ToggleUI"
+ToggleUI.Font = 9
+ToggleUI.Size = UDim2.new(0, 32, 0, 32)
+ToggleUI.TextScaled = true
+ToggleUI.TextColor3 = Color3.fromHex("AFA1FD")
+ToggleUI.Position = UDim2.new(1, -224, 0, 4)
+ToggleUI.Text = "P"
+ToggleUI.BackgroundTransparency = 0.4
+ToggleUI.BackgroundColor3 = Color3.fromHex("121318")
+ToggleUI.Parent = SG
+Instance.new("UICorner", ToggleUI).CornerRadius = UDim.new(0, 8)
+ToggleUI.MouseButton1Click:Connect(function()
+Back.Visible = not Back.Visible
+end)
+]]
 
-    local Background = Instance.new("Frame")
-    Background.Size = UDim2.new(1, 0, 1, 0)
-    Background.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-    Background.BorderSizePixel = 0
-    Background.Parent = LSUI
+local ToggleUI = Instance.new("ImageButton")
+ToggleUI.Name = "ToggleUI"
+ToggleUI.Size = UDim2.new(0, 32, 0, 32)
+ToggleUI.BackgroundTransparency = 0.4
+ToggleUI.BackgroundColor3 = Color3.fromHex("121318")
+ToggleUI.Position = UDim2.new(1, -224, 0, 4)
+ToggleUI.Parent = SG
+Instance.new("UICorner", ToggleUI).CornerRadius = UDim.new(0, 8)
+ToggleUI.Image = "rbxassetid://17005353956"
+ToggleUI.MouseButton1Click:Connect(function()
+Back.Visible = not Back.Visible
+end)
 
-    local Backgroundimage = Instance.new("ImageLabel")
-    Backgroundimage.Size = UDim2.new(1, 0, 1, 0)
-    Backgroundimage.Image = "rbxassetid://17457903813"
-    Backgroundimage.BackgroundTransparency = 1
-    Backgroundimage.Parent = Background
+local TabsOpenContainer = Instance.new("ScrollingFrame")
+TabsOpenContainer.ScrollingDirection = 2
+TabsOpenContainer.BackgroundColor3 = Color3.fromHex("17181D")
+TabsOpenContainer.CanvasSize = UDim2.new(0, 0, 0, 0)
+TabsOpenContainer.AutomaticCanvasSize = 2
+TabsOpenContainer.Name = "TabsOpenContainer"
+TabsOpenContainer.Position = UDim2.new(0, 10, 0, 45)
+TabsOpenContainer.ElasticBehavior = 1
+TabsOpenContainer.BorderSizePixel = 0
+TabsOpenContainer.ScrollBarThickness = 0
+TabsOpenContainer.Size = UDim2.new(0, 105, 0, 245)
+TabsOpenContainer.BackgroundTransparency = 0
+TabsOpenContainer.Parent = Back
+local L = Instance.new("UIListLayout")
+L.SortOrder = 2
+L.HorizontalAlignment = 1
+L.Padding = UDim.new(0, 2)
+L.Parent = TabsOpenContainer
 
-    local ToggleUI = Instance.new("ImageButton")
-    ToggleUI.Size = UDim2.new(0, 30, 0, 30)
-    ToggleUI.Position = UDim2.new(1, -30, 1, -30)
-    ToggleUI.Image = "rbxassetid://17005353956"
-    ToggleUI.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-    ToggleUI.ZIndex = 10
-    ToggleUI.Parent = LSUI
+local TabsContainer = Instance.new("Frame")
+TabsContainer.Size = UDim2.new(0, 315, 0, 245)
+TabsContainer.BorderSizePixel = 0
+TabsContainer.Name = "TabsContainer"
+TabsContainer.Position = UDim2.new(0, 125, 0, 45)
+TabsContainer.BackgroundColor3 = Color3.fromHex("17181D")
+TabsContainer.Parent = Back
 
-    local TabsOpenContainer = Instance.new("ScrollingFrame")
-    TabsOpenContainer.Size = UDim2.new(1, -60, 1, -60)
-    TabsOpenContainer.Position = UDim2.new(0, 30, 0, 30)
-    TabsOpenContainer.BackgroundTransparency = 1
-    TabsOpenContainer.BorderSizePixel = 0
-    TabsOpenContainer.ZIndex = 11
-    TabsOpenContainer.Parent = LSUI
+--[[
+local MakeATab = {}
 
-    local UIList = Instance.new("UIListLayout")
-    UIList.Parent = TabsOpenContainer
+function MakeATab:MakeTab(Title, Visible)
+local OpenTab = Instance.new("TextButton")
+OpenTab.BorderSizePixel = 0
+OpenTab.Name = "OpenTab"
+OpenTab.TextColor3 = Color3.fromHex("7A7A84")
+if Visible then OpenTab.TextColor3 = Color3.fromHex("AFA1FD") end
+OpenTab.AutoButtonColor = false
+OpenTab.Text = Title
+OpenTab.Size = UDim2.new(1, 0, 0, 25)
+OpenTab.TextScaled = true
+OpenTab.BackgroundColor3 = Color3.fromHex("1D1D27")
+OpenTab.Font = 9
+OpenTab.Parent = TabsOpenContainer
+Instance.new("UICorner", OpenTab).CornerRadius = UDim.new(0, 8)
 
-    local TabsContainer = Instance.new("Frame")
-    TabsContainer.Size = UDim2.new(1, 0, 1, 0)
-    TabsContainer.BackgroundTransparency = 1
-    TabsContainer.ZIndex = 11
-    TabsContainer.Parent = TabsOpenContainer
-    return TabsContainer
+local Tab = Instance.new("ScrollingFrame")
+Tab.Name = "Tab"
+Tab.Visible = Visible or false
+Tab.ScrollingDirection = 2
+Tab.AutomaticCanvasSize = 2
+Tab.ElasticBehavior = 1
+Tab.CanvasSize = UDim2.new(0, 0, 0, 0)
+Tab.ScrollBarThickness = 0
+Tab.Size = UDim2.new(1, 0, 1, 0)
+Tab.BackgroundTransparency = 1
+Tab.Parent = TabsContainer
+local L = Instance.new("UIListLayout")
+L.SortOrder = 2
+L.HorizontalAlignment = 1
+L.Padding = UDim.new(0, 4)
+L.Parent = Tab
+
+OpenTab.MouseButton1Click:Connect(function()
+for i,v in ipairs(TabsOpenContainer:GetChildren()) do
+if v.Name == "OpenTab" then
+v.TextColor3 = Color3.fromHex("7A7A84")
+end
+end
+for i,v in ipairs(TabsContainer:GetChildren()) do
+v.Visible = false
+end
+OpenTab.TextColor3 = Color3.fromHex("AFA1FD")
+Tab.Visible = true
+end)
+--]]
+
+local MakeATab = {}
+
+function MakeATab:MakeTab(Title, Visible, image)
+
+local OpenTab = Instance.new("TextButton")
+OpenTab.BorderSizePixel = 0
+OpenTab.Name = "OpenTab"
+OpenTab.TextColor3 = Color3.fromHex("7A7A84")
+if Visible then
+OpenTab.TextColor3 = Color3.fromHex("AFA1FD")
+end
+OpenTab.AutoButtonColor = false
+OpenTab.Text = Title
+OpenTab.Size = UDim2.new(1, 0, 0, 25)
+OpenTab.TextScaled = true
+OpenTab.BackgroundColor3 = Color3.fromHex("1D1D27")
+OpenTab.Font = 9
+OpenTab.Parent = TabsOpenContainer
+Instance.new("UICorner", OpenTab).CornerRadius = UDim.new(0, 8)
+
+local Tab = Instance.new("ScrollingFrame")
+Tab.Name = "Tab"
+Tab.Visible = Visible or false
+Tab.ScrollingDirection = 2
+Tab.AutomaticCanvasSize = 2
+Tab.ElasticBehavior = 1
+Tab.CanvasSize = UDim2.new(0, 0, 0, 0)
+Tab.ScrollBarThickness = 0
+Tab.Size = UDim2.new(1, 0, 1, 0)
+Tab.BackgroundTransparency = 1
+Tab.Parent = TabsContainer
+local L = Instance.new("UIListLayout")
+L.SortOrder = 2
+L.HorizontalAlignment = 1
+L.Padding = UDim.new(0, 4)
+L.Parent = Tab
+
+if image then
+local TabIcon = Instance.new("ImageLabel")
+TabIcon.Name = "TabIcon"
+TabIcon.Size = UDim2.new(0, 24, 0, 24)
+TabIcon.BackgroundTransparency = 1
+TabIcon.Image = "rbxassetid://"..image
+TabIcon.Position = UDim2.new(0, 5, 0, 0)
+TabIcon.Parent = OpenTab
+Instance.new("UICorner", TabIcon).CornerRadius = UDim.new(0, 8)
 end
 
-local MakeLSTab = {}
-
-function MakeLSTab:CreateLSTab(Title, image, Visible, TabsContainer)
-    local OpenLSTab = Instance.new("TextButton")
-    OpenLSTab.Size = UDim2.new(1, 0, 0, 25)
-    OpenLSTab.BackgroundTransparency = 1
-    OpenLSTab.Text = Title
-    OpenLSTab.TextColor3 = Color3.fromRGB(255, 255, 255)
-    OpenLSTab.Font = 9
-    OpenLSTab.TextSize = 14
-    OpenLSTab.BorderSizePixel = 0
-    OpenLSTab.Parent = TabsContainer
-
-    local TabIcon = Instance.new("ImageLabel")
-    TabIcon.Size = UDim2.new(0, 20, 0, 20)
-    TabIcon.Position = UDim2.new(1, -20, 0, (OpenLSTab.Size.Y.Offset - TabIcon.Size.Y.Offset) / 2)
-    TabIcon.BackgroundTransparency = 1
-    TabIcon.Image = "rbxassetid://" .. image
-    TabIcon.Parent = OpenLSTab
-
-    local Tab = Instance.new("ScrollingFrame")
-    Tab.Size = UDim2.new(1, 0, 1, -25)
-    Tab.Position = UDim2.new(0, 0, 0, 25)
-    Tab.BackgroundTransparency = 1
-    Tab.BorderSizePixel = 0
-    Tab.Visible = Visible or false
-    Tab.Parent = TabsContainer
-
-    OpenLSTab.MouseButton1Click:Connect(function()
-        Tab.Visible = true
-    end)
-end
-
-local LSTabEle = {}
-
-function LSTabEle:LSCreateInfo(Title, TabsContainer)
-    local LSInfoFrame = Instance.new("Frame")
-    LSInfoFrame.Size = UDim2.new(1, 0, 0, 150)
-    LSInfoFrame.BackgroundTransparency = 1
-    LSInfoFrame.BorderSizePixel = 0
-    LSInfoFrame.Parent = TabsContainer
-
-    local LSInfoTextLabel = Instance.new("TextLabel")
-    LSInfoTextLabel.Size = UDim2.new(1, -20, 1, 0)
-    LSInfoTextLabel.Position = UDim2.new(0, 10, 0, 10)
-    LSInfoTextLabel.Text = Title
-    LSInfoTextLabel.Font = 9
-    LSInfoTextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-    LSInfoTextLabel.TextSize = 14
-    LSInfoTextLabel.BackgroundTransparency = 1
-    LSInfoTextLabel.Parent = LSInfoFrame
-
-    local LSInfoUICorner = Instance.new("UICorner")
-    LSInfoUICorner.CornerRadius = UDim.new(0, 8)
-    LSInfoUICorner.Parent = LSInfoFrame
-end
-
-function LSTabEle:LSCreateButton(Title, image, callback, TabsContainer)
-    local LSButtonFrame = Instance.new("Frame")
-    LSButtonFrame.Size = UDim2.new(1, 0, 0, 30)
-    LSButtonFrame.BackgroundTransparency = 1
-    LSButtonFrame.BorderSizePixel = 0
-    LSButtonFrame.Parent = TabsContainer
-    
-    local LSButtonTextButton = Instance.new("TextButton")
-    LSButtonTextButton.Size = UDim2.new(1, -40, 1, 0)
-    LSButtonTextButton.Position = UDim2.new(0, 0, 0, 0)
-    LSButtonTextButton.BackgroundTransparency = 1
-    LSButtonTextButton.Text = Title
-    LSButtonTextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-    LSButtonTextButton.Font = 9
-    LSButtonTextButton.TextSize = 14
-    LSButtonTextButton.BorderSizePixel = 0
-    LSButtonTextButton.Parent = LSButtonFrame
-
-    local LSButtonImg = Instance.new("ImageLabel")
-    LSButtonImg.Size = UDim2.new(0, 20, 0, 20)
-    LSButtonImg.Position = UDim2.new(1, -20, 0, 5)
-    LSButtonImg.BackgroundTransparency = 1
-    LSButtonImg.Image = "rbxassetid://" .. image
-    LSButtonImg.Parent = LSButtonTextButton
-
-    local LSButtonUICorner = Instance.new("UICorner")
-    LSButtonUICorner.CornerRadius = UDim.new(0, 8)
-    LSButtonUICorner.Parent = LSButtonFrame
-
-    LSButtonTextButton.MouseButton1Click:Connect(function()
-        callback()
-    end)
-end
-
-function LSTabEle:LSCreateToggle(Title, enabled, callback, TabsContainer)
-    local LSToggleFrame = Instance.new("Frame")
-    LSToggleFrame.Size = UDim2.new(1, 0, 0, 25)
-    LSToggleFrame.BackgroundTransparency = 1
-    LSToggleFrame.BorderSizePixel = 0
-    LSToggleFrame.Parent = TabsContainer
-    
-    local LSToggleTextButton = Instance.new("TextButton")
-    LSToggleTextButton.Size = UDim2.new(1, -60, 1, 0)
-    LSToggleTextButton.Position = UDim2.new(0, 0, 0, 0)
-    LSToggleTextButton.BackgroundTransparency = 1
-    LSToggleTextButton.Text = Title
-    LSToggleTextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-    LSToggleTextButton.Font = 9
-    LSToggleTextButton.TextSize = 14
-    LSToggleTextButton.BorderSizePixel = 0
-    LSToggleTextButton.Parent = LSToggleFrame
-
-    local LSToggleButtonUICorner = Instance.new("UICorner")
-    LSToggleButtonUICorner.CornerRadius = UDim.new(0, 8)
-    LSToggleButtonUICorner.Parent = LSToggleTextButton
-
-    local LSToggleSwitchFrame = Instance.new("Frame")
-    LSToggleSwitchFrame.Size = UDim2.new(0, 50, 0, 20)
-    LSToggleSwitchFrame.Position = UDim2.new(1, -50, 0, 2.5)
-    LSToggleSwitchFrame.BackgroundTransparency = 1
-    LSToggleSwitchFrame.Parent = LSToggleFrame
-
-    local LSToggleSwitchUICorner = Instance.new("UICorner")
-    LSToggleSwitchUICorner.CornerRadius = UDim.new(0, 10)
-    LSToggleSwitchUICorner.Parent = LSToggleSwitchFrame
-
-    local LSToggleImage = Instance.new("ImageButton")
-    LSToggleImage.Size = UDim2.new(0, 20, 0, 20)
-    LSToggleImage.Position = UDim2.new(1, -25, 0, 0)
-    LSToggleImage.BackgroundTransparency = 1
-    LSToggleImage.Image = "rbxassetid://15808206473"
-    LSToggleImage.MouseButton1Click:Connect(function()
-        local newStatus = not LSToggleImage.Visible
-        LSToggleImage.Visible = newStatus
-        callback(newStatus)
-    end)
-    LSToggleImage.Parent = LSToggleSwitchFrame
-
-    local function updateToggleImagePosition(status)
-        if status then
-            LSToggleImage.Position = UDim2.new(1, -25, 0, 0)
-        else
-            LSToggleImage.Position = UDim2.new(0, 5, 0, 0)
+OpenTab.MouseButton1Click:Connect(function()
+    for i, v in ipairs(TabsOpenContainer:GetChildren()) do
+        if v.Name == "OpenTab" and v ~= OpenTab then
+            v.TextColor3 = Color3.fromHex("7A7A84")
         end
     end
-
-    updateToggleImagePosition(enabled)
-end
-
-function LSTabEle:LSCreateCombobox(Title, options, callback, TabsContainer)
-    local LSComboBox = Instance.new("ImageButton")
-    LSComboBox.Size = UDim2.new(1, 0, 0, 25)
-    LSComboBox.BackgroundTransparency = 1
-    LSComboBox.BorderSizePixel = 0
-    LSComboBox.Parent = TabsContainer
-    
-    local LSComboBoxUICorner = Instance.new("UICorner")
-    LSComboBoxUICorner.CornerRadius = UDim.new(0, 8)
-    LSComboBoxUICorner.Parent = LSComboBox
-
-    local LSComboBoxTextLabel = Instance.new("TextLabel")
-    LSComboBoxTextLabel.Size = UDim2.new(1, -40, 1, 0)
-    LSComboBoxTextLabel.Position = UDim2.new(0, 10, 0, 0)
-    LSComboBoxTextLabel.BackgroundTransparency = 1
-    LSComboBoxTextLabel.Text = Title
-    LSComboBoxTextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-    LSComboBoxTextLabel.Font = 9
-    LSComboBoxTextLabel.TextSize = 14
-    LSComboBoxTextLabel.Parent = LSComboBox
-
-    local LSComboBoxTextLabelArrow = Instance.new("TextLabel")
-    LSComboBoxTextLabelArrow.Size = UDim2.new(0, 20, 0, 20)
-    LSComboBoxTextLabelArrow.Position = UDim2.new(1, -20, 0, 2.5)
-    LSComboBoxTextLabelArrow.BackgroundTransparency = 1
-    LSComboBoxTextLabelArrow.Text = "▼"
-    LSComboBoxTextLabelArrow.TextColor3 = Color3.fromRGB(255, 255, 255)
-    LSComboBoxTextLabelArrow.Font = 9
-    LSComboBoxTextLabelArrow.TextSize = 14
-    LSComboBoxTextLabelArrow.TextXAlignment = Enum.TextXAlignment.Right
-    LSComboBoxTextLabelArrow.Parent = LSComboBox
-
-    local LSComboBoxList = Instance.new("Frame")
-    LSComboBoxList.Size = UDim2.new(1, 0, 0, 100)
-    LSComboBoxList.BackgroundTransparency = 1
-    LSComboBoxList.Position = UDim2.new(0, 0, 0, 25)
-    LSComboBoxList.Visible = false
-    LSComboBoxList.Parent = LSComboBox
-
-    local LSUIListLayout = Instance.new("UIListLayout")
-    LSUIListLayout.Parent = LSComboBoxList
-
-    for i, option in ipairs(options) do
-        local OptionButton = Instance.new("TextButton")
-        OptionButton.Size = UDim2.new(1, 0, 0, 25)
-        OptionButton.BackgroundTransparency = 1
-        OptionButton.Text = option
-        OptionButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-        OptionButton.Font = 9
-        OptionButton.TextSize = 14
-        OptionButton.Parent = LSComboBoxList
-        OptionButton.MouseButton1Click:Connect(function()
-            callback(option)
-            LSComboBoxTextLabel.Text = option
-            LSComboBoxList.Visible = false
-        end)
+    for i, v in ipairs(TabsContainer:GetChildren()) do
+        if v ~= Tab then
+            v.Visible = false
+        end
     end
+    OpenTab.TextColor3 = Color3.fromHex("AFA1FD")
+    Tab.Visible = true
+end)
 
-    LSComboBox.MouseButton1Click:Connect(function()
-        LSComboBoxList.Visible = not LSComboBoxList.Visible
-    end)
+local TabElements = {}
+function TabElements:Info(Title)
+local Info = Instance.new("TextLabel")
+Info.TextScaled = true
+Info.Font = 9
+Info.Size = UDim2.new(1, 0, 0, 25)
+Info.BackgroundTransparency = 1
+Info.Text = Title
+Info.TextXAlignment = 0
+Info.Name = "Info"
+Info.TextColor3 = Color3.fromHex("AFA1FD")
+Info.Parent = Tab
 end
 
-function LSTabEle:LSCreateTextbox(Title, defaultText, callback, TabsContainer)
-    local TextBoxFrame = Instance.new("Frame")
-    TextBoxFrame.Size = UDim2.new(1, 0, 0, 50)
-    TextBoxFrame.BackgroundTransparency = 1
-    TextBoxFrame.Parent = TabsContainer
+function TabElements:Button(Title, Cally)
+local Button = Instance.new("TextButton")
+Button.TextXAlignment = 0
+Button.Name = "Button"
+Button.TextColor3 = Color3.fromHex("7A7A84")
+Button.Text = Title
+Button.AutoButtonColor = false
+Button.Font = 9
+Button.Size = UDim2.new(1, 0, 0, 25)
+Button.TextScaled = true
+Button.BackgroundColor3 = Color3.fromHex("1D1D27")
+Button.BorderSizePixel = 0
+Button.Parent = Tab
+Instance.new("UICorner", Button).CornerRadius = UDim.new(0, 8)
+local ButtonImg = Instance.new("ImageLabel")
+ButtonImg.Position = UDim2.new(1, -30, 0, 0)
+ButtonImg.Image = "rbxassetid://15808210872"
+ButtonImg.Size = UDim2.new(0, 30, 0, 30)
+ButtonImg.BackgroundTransparency = 1
+ButtonImg.Parent = Button
+Instance.new("UICorner", ButtonImg).CornerRadius = UDim.new(0, 8)
+Button.MouseButton1Click:Connect(function()
+coroutine.wrap(function()
+Button.TextColor3 = Color3.fromHex("AFA1FD")
+task.wait(1)
+Button.TextColor3 = Color3.fromHex("7A7A84")
+end)()
+pcall(Cally)
+end)
+end
 
-    local TextBoxLabel = Instance.new("TextLabel")
-    TextBoxLabel.Size = UDim2.new(1, 0, 0, 20)
-    TextBoxLabel.Position = UDim2.new(0, 0, 0, 0)
-    TextBoxLabel.BackgroundTransparency = 1
-    TextBoxLabel.Text = Title
-    TextBoxLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-    TextBoxLabel.Font = 9
-    TextBoxLabel.TextSize = 14
-    TextBoxLabel.Parent = TextBoxFrame
+function TabElements:Toggle(Title, Cally)
+local Tog = Instance.new("TextLabel")
+Tog.Size = UDim2.new(1, -40, 0, 25)
+Tog.BorderSizePixel = 0
+Tog.BackgroundColor3 = Color3.fromHex("1D1D27")
+Tog.TextXAlignment = 0
+Tog.TextColor3 = Color3.fromHex("7A7A84")
+Tog.Text = Title
+Tog.Font = 9
+Tog.TextScaled = true
+Tog.Parent = Tab
+Instance.new("UICorner", Tog).CornerRadius = UDim.new(0, 8)
+local TogButton = Instance.new("ImageButton")
+TogButton.ImageTransparency = 1
+TogButton.BackgroundTransparency = 0.9
+TogButton.Size = UDim2.new(0, 25, 0, 25)
+TogButton.Image = "rbxassetid://15808206473"
+TogButton.BackgroundColor3 = Color3.fromHex("7A7A84")
+TogButton.Position = UDim2.new(1, 10, 0, 0)
+TogButton.Parent = Tog
+Instance.new("UICorner", TogButton).CornerRadius = UDim.new(0, 8)
+local On = false
+TogButton.MouseButton1Click:Connect(function()
+On = not On
+if On then
+TogButton.ImageTransparency = 0
+Tog.TextColor3 = Color3.fromHex("AFA1FD")
+else
+TogButton.ImageTransparency = 1
+Tog.TextColor3 = Color3.fromHex("7A7A84")
+end
+pcall(Cally, On)
+end)
+end
+
+function TabElements:Textbox(Title, Cally)
+    local TextboxFrame = Instance.new("Frame")
+    TextboxFrame.Size = UDim2.new(1, 0, 0, 25)
+    TextboxFrame.BackgroundColor3 = Color3.fromHex("1D1D27")
+    TextboxFrame.BorderSizePixel = 0
+    TextboxFrame.Parent = Tab
+    Instance.new("UICorner", TextboxFrame).CornerRadius = UDim.new(0, 8)
+
+    local TextLabel = Instance.new("TextLabel")
+    TextLabel.Size = UDim2.new(1, 0, 0, 25)
+    TextLabel.BackgroundTransparency = 1
+    TextLabel.TextColor3 = Color3.fromHex("7A7A84")
+    TextLabel.Text = Title
+    TextLabel.Font = 9
+    TextLabel.TextScaled = true
+    TextLabel.TextXAlignment = 0
+    TextLabel.Position = UDim2.new(0, 8, 0, 0)
+    TextLabel.Parent = TextboxFrame
 
     local TextBox = Instance.new("TextBox")
-    TextBox.Size = UDim2.new(1, 0, 1, 0)
-    TextBox.Position = UDim2.new(0, 0, 0, 25)
-    TextBox.BackgroundTransparency = 1
-    TextBox.Text = defaultText or ""
-    TextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+    TextBox.Size = UDim2.new(1, -20, 1, 0)
     TextBox.Font = 9
-    TextBox.TextSize = 14
-    TextBox.Parent = TextBoxFrame
+    TextBox.TextColor3 = Color3.fromHex("7A7A84")
+    TextBox.BackgroundColor3 = Color3.fromHex("1D1D27")
+    TextBox.BorderSizePixel = 0
+    TextBox.Position = UDim2.new(0, 8, 0, 0)
+    TextBox.Parent = TextboxFrame
 
-    TextBox.Changed:Connect(function(property)
-        if property == "Text" then
-            callback(TextBox.Text)
+    TextBox.Changed:Connect(function(Property)
+        if Property == "Text" then
+            pcall(Cally, TextBox.Text)
         end
     end)
 end
 
-function LSTabEle:LSCreateSlider(Title, default, min, max, precise, callback, TabsContainer)
-    local SliderFrame = Instance.new("Frame")
-    SliderFrame.Size = UDim2.new(1, 0, 0, 60)
-    SliderFrame.BackgroundTransparency = 1
-    SliderFrame.Parent = TabsContainer
+function TabElements:Combobox(Title, Options, DefaultIndex, Cally)
+    local ComboboxFrame = Instance.new("Frame")
+    ComboboxFrame.Size = UDim2.new(1, 0, 0, 25)
+    ComboboxFrame.BackgroundColor3 = Color3.fromHex("1D1D27")
+    ComboboxFrame.BorderSizePixel = 0
+    ComboboxFrame.Parent = Tab
+    Instance.new("UICorner", ComboboxFrame).CornerRadius = UDim.new(0, 8)
 
-    local SliderLabel = Instance.new("TextLabel")
-    SliderLabel.Size = UDim2.new(1, 0, 0, 20)
-    SliderLabel.Position = UDim2.new(0, 0, 0, 5)
-    SliderLabel.BackgroundTransparency = 1
-    SliderLabel.Text = Title
-    SliderLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-    SliderLabel.Font = 9
-    SliderLabel.TextSize = 14
-    SliderLabel.Parent = SliderFrame
+    local Label = Instance.new("TextLabel")
+    Label.Size = UDim2.new(1, 0, 0, 25)
+    Label.BackgroundTransparency = 1
+    Label.TextColor3 = Color3.fromHex("7A7A84")
+    Label.Text = Title
+    Label.Font = 9
+    Label.TextScaled = true
+    Label.TextXAlignment = 0
+    Label.Position = UDim2.new(0, 8, 0, 0)
+    Label.Parent = ComboboxFrame
 
-    local SliderBar = Instance.new("Frame")
-    SliderBar.Size = UDim2.new(1, 0, 0, 5)
-    SliderBar.Position = UDim2.new(0, 0, 0, 25)
-    SliderBar.BackgroundTransparency = 1
-    SliderBar.Parent = SliderFrame
+    local Dropdown = Instance.new("TextButton")
+    Dropdown.Size = UDim2.new(1, 0, 1, 0)
+    Dropdown.BackgroundColor3 = Color3.fromHex("1D1D27")
+    Dropdown.BorderSizePixel = 0
+    Dropdown.Font = 9
+    Dropdown.TextColor3 = Color3.fromHex("7A7A84")
+    Dropdown.Text = Options[DefaultIndex] or ""
+    Dropdown.TextXAlignment = 0
+    Dropdown.Position = UDim2.new(0, 8, 0, 0)
+    Dropdown.Parent = ComboboxFrame
 
-    local SliderFill = Instance.new("Frame")
-    SliderFill.Size = UDim2.new((default - min) / (max - min), 0, 1, 0)
-    SliderFill.BackgroundTransparency = 1
-    SliderFill.BackgroundColor3 = Color3.fromRGB(0, 123, 255)
-    SliderFill.Parent = SliderBar
-
-    local SliderValue = Instance.new("TextBox")
-    SliderValue.Size = UDim2.new(1, 0, 0, 20)
-    SliderValue.Position = UDim2.new(0, 0, 0, 35)
-    SliderValue.BackgroundTransparency = 1
-    SliderValue.Text = tostring(default)
-    SliderValue.TextColor3 = Color3.fromRGB(255, 255, 255)
-    SliderValue.Font = 9
-    SliderValue.TextSize = 14
-    SliderValue.Parent = SliderFrame
-
-    local function updateValue()
-        local mouseX = game.Players.LocalPlayer:GetMouse().X
-        local ratio = (mouseX - SliderBar.AbsolutePosition.X) / SliderBar.AbsoluteSize.X
-        local newValue = min + ratio * (max - min)
-        if precise then
-            newValue = math.min(max, math.max(min, math.floor(newValue * 10 + 0.5) / 10))
-        else
-            newValue = math.min(max, math.max(min, math.floor(newValue + 0.5)))
-        end
-        SliderFill.Size = UDim2.new((newValue - min) / (max - min), 0, 1, 0)
-        SliderValue.Text = tostring(newValue)
-        callback(newValue)
+    local function updateText()
+        Dropdown.Text = Options[DefaultIndex] or ""
     end
 
-    SliderBar.MouseButton1Down:Connect(function()
-        local function onMove()
-            updateValue()
+    Dropdown.MouseButton1Click:Connect(function()
+        local Open = not Dropdown.Open
+        Dropdown.Open = Open
+        for _, Button in pairs(ComboboxFrame:GetChildren()) do
+            if Button:IsA("TextButton") and Button.Name ~= "DropdownButton" then
+                Button:Destroy()
+            end
         end
-        mouse.Move:Connect(onMove)
-        mouse.Button1Up:Connect(function()
-            mouse.Move:Disconnect(onMove)
-        end)
+        if Open then
+            for i, v in pairs(Options) do
+                local Button = Instance.new("TextButton")
+                Button.Size = UDim2.new(1, 0, 0, 25)
+                Button.BackgroundColor3 = Color3.fromHex("1D1D27")
+                Button.BorderSizePixel = 0
+                Button.Font = 9
+                Button.TextColor3 = Color3.fromHex("7A7A84")
+                Button.Text = v
+                Button.TextXAlignment = 0
+                Button.Position = UDim2.new(0, 0, i - 1, 30)
+                Button.Parent = ComboboxFrame
+                Button.MouseButton1Click:Connect(function()
+                    DefaultIndex = i
+                    updateText()
+                    Dropdown.Open = false
+                    pcall(Cally, i)
+                end)
+            end
+        end
     end)
 end
 
-function LSTabEle:LSCreateImage(imageAssetId, TabsContainer)
-    local Image = Instance.new("ImageLabel")
-    Image.Size = UDim2.new(1, 0, 0, 50)
-    Image.BackgroundTransparency = 1
-    Image.Image = "rbxassetid://" .. imageAssetId
-    Image.Name = "InfoImage"
-    Image.Parent = TabsContainer
-    local UICorner = Instance.new("UICorner")
-    UICorner.Parent = Image
-    UICorner.CornerRadius = UDim.new(0, 8)
+function TabElements:Imagelabel(Image, ImageSize)
+    local ImageLabel = Instance.new("ImageLabel")
+    ImageLabel.Size = UDim2.new(0, ImageSize.x, 0, ImageSize.y)
+    ImageLabel.Image = Image
+    ImageLabel.BackgroundTransparency = 1
+    ImageLabel.Parent = Tab
+    Instance.new("UICorner", ImageLabel).CornerRadius = UDim.new(0, 8)
 end
 
-return LSTabEle
+function TabElements:Slider(Title, Min, Max, Default, Cally)
+    local SliderFrame = Instance.new("Frame")
+    SliderFrame.Size = UDim2.new(1, 0, 0, 50)
+    SliderFrame.BackgroundColor3 = Color3.fromHex("1D1D27")
+    SliderFrame.BorderSizePixel = 0
+    SliderFrame.Parent = Tab
+    Instance.new("UICorner", SliderFrame).CornerRadius = UDim.new(0, 8)
+
+    local Label = Instance.new("TextLabel")
+    Label.Size = UDim2.new(1, 0, 0, 25)
+    Label.BackgroundTransparency = 1
+    Label.TextColor3 = Color3.fromHex("7A7A84")
+    Label.Text = Title
+    Label.Font = 9
+    Label.TextScaled = true
+    Label.TextXAlignment = 0
+    Label.Position = UDim2.new(0, 8, 0, 0)
+    Label.Parent = SliderFrame
+
+    local SliderBar = Instance.new("Frame")
+    SliderBar.Size = UDim2.new(1, 0, 0, 20)
+    SliderBar.BackgroundColor3 = Color3.fromHex("7A7A84")
+    SliderBar.BorderSizePixel = 0
+    SliderBar.Position = UDim2.new(0, 0, 0, 25)
+    SliderBar.Parent = SliderFrame
+    Instance.new("UICorner", SliderBar).CornerRadius = UDim.new(0, 8)
+
+    local SliderButton = Instance.new("Frame")
+    SliderButton.Size = UDim2.new(0, 20, 1, 0)
+    SliderButton.BackgroundColor3 = Color3.fromHex("AFA1FD")
+    SliderButton.BorderSizePixel = 0
+    SliderButton.Position = UDim2.new((Default - Min) / (Max - Min), 0, 0, 0)
+    SliderButton.Parent = SliderBar
+    Instance.new("UICorner", SliderButton).CornerRadius = UDim.new(0, 8)
+
+    local SliderValue = Instance.new("TextLabel")
+    SliderValue.Size = UDim2.new(1, 0, 0, 25)
+    SliderValue.BackgroundTransparency = 1
+    SliderValue.TextColor3 = Color3.fromHex("7A7A84")
+    SliderValue.Text = tostring(Default)
+    SliderValue.Font = 9
+    SliderValue.TextScaled = true
+    SliderValue.TextXAlignment = 0
+    SliderValue.Position = UDim2.new(0, 8, 1, 0)
+    SliderValue.Parent = SliderFrame
+
+    SliderButton.MouseButton1Down:Connect(function()
+        local StartX = SliderButton.Position.X.Scale
+        local function updateSlider()
+            local X = (Mouse.X - SliderBar.AbsolutePosition.X) / SliderBar.AbsoluteSize.X
+            X = math.clamp(X, 0, 1)
+            SliderButton.Position = UDim2.new(X, 0, 0, 0)
+            local Value = X * (Max - Min) + Min
+            SliderValue.Text = tostring(math.floor(Value))
+            pcall(Cally, Value)
+        end
+        updateSlider()
+        mouse.Move:Connect(updateSlider)
+        mouse.Button1Up:Wait()
+        mouse.Move:Disconnect()
+    end)
 end
-return MakeLSTab
+
+return TabElements
 end
-return LSLib
+return MakeATab
+end
+return Lib
