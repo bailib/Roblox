@@ -1,0 +1,7 @@
+coroutine.resume(coroutine.create(function() 
+    while wait(1) do
+        if antifunctionhook() ~= 19 and typeof(antifunctionhook()):lower ~= "number" then
+            game.Players.LocalPlayer:Destroy();
+        end
+    end    
+end))
