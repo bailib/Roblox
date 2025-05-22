@@ -6,7 +6,8 @@ local Games = {
   [126884695634066] = "https://raw.githubusercontent.com/bailib/Roblox/refs/heads/main/GrowAGarden.txt",--Grow a garden
   [121308443347459] = "https://raw.githubusercontent.com/bailib/Roblox/refs/heads/main/7days.lua",--7DAYS
   [12137249458] = "https://raw.githubusercontent.com/bailib/Roblox/refs/heads/main/GunFFA.lua",--GunFFa
-  [4618049391] = "https://raw.githubusercontent.com/bailib/Roblox/refs/heads/main/HeBeiTangCountry.lua",
-  [16560655288] = "https://github.com/bailib/Roblox/raw/refs/heads/main/%E6%9F%B1%E5%AD%90%E8%BF%BD%E9%80%902",
+  [4618049391] = "https://raw.githubusercontent.com/bailib/Roblox/refs/heads/main/HeBeiTangCountry.lua",--河北
+  [16560655288] = "https://github.com/bailib/Roblox/raw/refs/heads/main/%E6%9F%B1%E5%AD%90%E8%BF%BD%E9%80%902",--速度追逐二
+  [138878871969281] = "https://raw.githubusercontent.com/bailib/Roblox/refs/heads/main/skinwalkers.txt"
 }
 return Games
