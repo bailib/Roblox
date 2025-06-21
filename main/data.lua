@@ -7,3 +7,4 @@ local data = {
     AutoWalk = false
   }
 }
+return data
