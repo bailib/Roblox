@@ -132,7 +132,7 @@ Main:Toggle({
         spawn(function()
             while data["Animal Hide and Seek"].AlwaysSeeker and wait() do
                 if Player.PlayerGui.MainGui.GameFrame.RoleSelectionFrame.Visible == true then
-                    Player.PlayerGui.MainGui.GameFrame.RoleSelectionFrame.CanvasGroup.MainContainer.KillerChanceTxt = "Chance for killer: 100%"
+                    Player.PlayerGui.MainGui.GameFrame.RoleSelectionFrame.CanvasGroup.MainContainer.KillerChanceTxt.Text = "Chance for killer: 100%"
                     Player.PlayerGui.MainGui.GameFrame.RoleSelectionFrame.CanvasGroup.MainContainer.RoleTxt.Text = "killer"
                 end
                 if Player.Team.Name ~= "Seeker" then
