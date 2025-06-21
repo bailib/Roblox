@@ -8,7 +8,13 @@ local win = lib:Window("Animal Hide and Seek",Color3.fromRGB(44, 120, 224), Enum
 local Section = win:Tab("Main")
 
 ESP.AddFolder("HiderESPFolder")
-ESP.AddFolder("AnimalESPFolder")
+
+local hiders = {}
+for _, v in ipairs(Players:GetPlayers()) do
+    if v ~= Player and v.Team.Name == "Hider" then
+        table.insert(hiders, v)
+    end
+end
 
 local Players = game:GetService("Players")
 local Player = Players.LocalPlayer
@@ -17,13 +23,28 @@ local hum = Character.HumanoidRootPart
 
 Section:Label("By Moxiaobai | Open source")
 
-Section:Toggle("透视躲藏者", data["Animal Hide and Seek"].AimHider, function(state)
+Section:Toggle("自瞄躲藏者", data["Animal Hide and Seek"].AimHider, function(state)
     data["Animal Hide and Seek"].AimHider = state
-    if data["Animal Hide and Seek"].AimHider then
-        aim = Aimbot.AutoAimLoop("lock", "Raycast", "Head", true, false, 0.1)
-    else
-        aim:Disconnect()
-    end
+    spawn(function()
+        while data["Animal Hide and Seek"].AimHider and wait() then
+            local closestPlayer = nil
+            local closestDistance = math.huge
+            for _, v in next, OvO:GetChildren() do
+                if v ~= O_O and v.Team.Name == "Hider" and v.Character.Humanoid.Health > 0 then
+                    if v.Character and v.Character:FindFirstChild("HumanoidRootPart") then
+                        local distance = (O_O.Character.HumanoidRootPart.Position - v.Character.HumanoidRootPart.Position).magnitude
+                        if distance < closestDistance then
+                            closestDistance = distance
+                            closestPlayer = v.Character
+                        end
+                    end
+                end
+            end
+            if closestPlayer then
+                camera.CFrame = CFrame.lookAt(camera.CFrame.p, closestPlayer.HumanoidRootPart.Position)
+            end
+        end
+    end)
 end)
 
 Section:Toggle("透视躲藏者", data["Animal Hide and Seek"].ESPHider, function(state)
@@ -34,6 +55,8 @@ Section:Toggle("透视躲藏者", data["Animal Hide and Seek"].ESPHider, functio
                 ESP.AddESP("HiderESPFolder", "玩家" .. v.Name, v.Character, Color3.new(0,0,1))
             end
         end
+    else
+        ESP.Clear("HiderESPFolder")
     end
 end)
 
