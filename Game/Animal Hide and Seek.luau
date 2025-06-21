@@ -28,7 +28,7 @@ local Window = WindUI:CreateWindow({
     User = {
         Enabled = true,
         Callback = function() print("clicked") end,
-        Anonymous = true
+        Anonymous = false
     },
     SideBarWidth = 200,
     -- HideSearchBar = true,
@@ -115,8 +115,10 @@ Main:Toggle({
         spawn(function()
             while data["Animal Hide and Seek"].AutoCoin and wait() do
                 for _,v in next,workspace.CurrentMap.SPAWNED_COINS:GetChildren() do
-                    firetouchinterest(v.Hitbox, hum, 0)
-                    firetouchinterest(v.Hitbox, hum, 1)
+                    if v then
+                        firetouchinterest(v.Hitbox, hum, 0)
+                        firetouchinterest(v.Hitbox, hum, 1)
+                    end
                 end
             end
         end)
