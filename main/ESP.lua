@@ -18,12 +18,6 @@ function ESP.AddESP(
         return
     end
 
-    for _, gui in ipairs(workspace:FindFirstChild(folderName):GetChildren()) do
-        if gui:IsA("BillboardGui") and gui.Adornee == adornee then
-            return
-        end
-    end
-
     local ESPBillboardGui = Instance.new("BillboardGui")
     ESPBillboardGui.Parent = workspace:FindFirstChild(folderName)
     ESPBillboardGui.Adornee = adornee
