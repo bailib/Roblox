@@ -152,7 +152,7 @@ Main:Toggle({
         spawn(function()
             while data["Animal Hide and Seek"].AutoWalk and wait() do
                 local nearestPlayer, minDistance = nil, math.huge
-                for _, player in ipairs(Players:GetPlayers()) do
+                for _, player in ipairs(Players:GetChildren()) do
                     if player ~= Player and player.Character then
                         if player.Character:FindFirstChild("HumanoidRootPart") then
                             local distance = (player.Character.HumanoidRootPart.Position - hum.Position).Magnitude
@@ -164,7 +164,7 @@ Main:Toggle({
                     end
                 end
                 if nearestPlayer then
-                    hum:MoveTo(nearestPlayer.Character.HumanoidRootPart.Position)
+                    Character.Humanoid:MoveTo(nearestPlayer.Character.HumanoidRootPart.Position)
                 end
             end
         end)
