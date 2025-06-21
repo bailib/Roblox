@@ -53,9 +53,10 @@ MainSection = Window:Section({
 })
 
 Main = MainSection:Tab({ Title = "主要功能", Icon = "Sword" })
+Source = MainSection:Tab({ Title = "查看源码", Icon = "Sword" })
 
-Main:Code({
-    Code = request({Url="https://raw.githubusercontent.com/9kn-1/g/main/BKL.lua"}).Body,
+Source:Code({
+    Code = request({Url="https://raw.githubusercontent.com/bailib/Roblox/refs/heads/main/Game/Animal%20Hide%20and%20Seek.luau"}).Body,
 })
 
 Main:Toggle({
