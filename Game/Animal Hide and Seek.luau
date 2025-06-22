@@ -56,7 +56,7 @@ Main = MainSection:Tab({ Title = "主要功能", Icon = "Sword" })
 Source = MainSection:Tab({ Title = "查看源码", Icon = "Sword" })
 
 Source:Code({
-    Code = request({Url="https://raw.githubusercontent.com/bailib/Roblox/refs/heads/main/Game/Animal%20Hide%20and%20Seek.luau"}).Body,
+    Code = request({Url="https://raw.gihttps://raw.githubusercontent.com/bailib/Roblox/refs/heads/main/Game/Animal%20Hide%20and%20Seek.luau"}).Body,
 })
 
 Main:Toggle({
