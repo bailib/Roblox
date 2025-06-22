@@ -5,6 +5,11 @@ local data = {
     AutoCoin = false,
     AlwaysSeeker = false,
     AutoWalk = false
+  },
+  ["Brainrot Evolution"] = {
+    AttackAll = false,
+    KillAura = false,
+    TpAttack = false
   }
 }
 return data
