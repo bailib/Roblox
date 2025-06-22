@@ -1,9 +1,10 @@
 local data = loadstring(game:HttpGet("https://raw.githubusercontent.com/bailib/Roblox/refs/heads/main/main/data.lua"))()
+local language = loadstring(game:HttpGet("https://raw.githubusercontent.com/bailib/Roblox/refs/heads/main/main/language.lua"))()
 local WindUI = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
 
 WindUI:Notify({
-    Title = "Open source",
-    Content = "By Moxiaobai",
+    Title = language[game.Players.LocalPlayer.LocaleId].NotificationText,
+    Content = language[game.Players.LocalPlayer.LocaleId].NotificationContent,
     Duration = 5,
 })
 
@@ -13,10 +14,10 @@ local Character = Player.Character
 local hum = Character.HumanoidRootPart
 
 local Window = WindUI:CreateWindow({
-    Title = "Brainrot Evolution",
+    Title = language[game.Players.LocalPlayer.LocaleId]["Brainrot Evolution"].Title,
     Icon = "rbxassetid://129260712070622",
     IconThemed = true,
-    Author = "By Moxiaobai",
+    Author = language[game.Players.LocalPlayer.LocaleId].Author,
     Folder = "CloudHub",
     Size = UDim2.fromOffset(300, 270),
     Transparent = true,
@@ -32,7 +33,7 @@ local Window = WindUI:CreateWindow({
     -- Background = "rbxassetid://13511292247", -- rbxassetid only
 })
 Window:EditOpenButton({
-    Title = "打开UI",
+    Title = language[game.Players.LocalPlayer.LocaleId].OpenText,
     Icon = "monitor",
     CornerRadius = UDim.new(0,16),
     StrokeThickness = 2,
@@ -44,19 +45,19 @@ Window:EditOpenButton({
 })
 
 MainSection = Window:Section({
-    Title = "主",
+    Title = "main",
     Opened = true,
 })
 
-Main = MainSection:Tab({ Title = "主要功能", Icon = "Sword" })
-Source = MainSection:Tab({ Title = "查看源码", Icon = "Sword" })
+Main = MainSection:Tab({ Title = "Main", Icon = "Sword" })
+Source = MainSection:Tab({ Title = "Source", Icon = "Sword" })
 
 Source:Code({
-    Code = request({Url="https://raw.githubusercontent.com/bailib/Roblox/refs/heads/main/Game/Brainrot%20Evolution.luau"}).Body,
+    Code = request({Url="https://raw.githubusercontent.com/bailib/Roblox/refs/heads/main/Game/Brainrot%20Evolution"}).Body,
 })
 
 Main:Toggle({
-    Title = "自动攻击全图",
+    Title = language[game.Players.LocalPlayer.LocaleId]["Brainrot Evolution"].AttackAll,
     Image = "bird",
     Value = data["Brainrot Evolution"].AttackAll,
     Callback = function(state)
@@ -76,7 +77,7 @@ Main:Toggle({
 })
 
 Main:Toggle({
-    Title = "杀戮光环",
+    Title = language[game.Players.LocalPlayer.LocaleId]["Brainrot Evolution"].KillAura,
     Image = "bird",
     Value = data["Brainrot Evolution"].KillAura,
     Callback = function(state)
@@ -105,7 +106,7 @@ Main:Toggle({
 })
 
 Main:Toggle({
-    Title = "传送自动攻击",
+    Title = language[game.Players.LocalPlayer.LocaleId]["Brainrot Evolution"].TpAttack,
     Image = "bird",
     Value = data["Brainrot Evolution"].TpAttack,
     Callback = function(state)
