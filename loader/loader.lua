@@ -49,7 +49,7 @@ Source:Code({
     Code = request({Url="https://raw.githubusercontent.com/bailib/Roblox/refs/heads/main/loader/loader.lua"}).Body,
 })
 
-local gamelist = game:HttpGet("https://raw.githubusercontent.com/bailib/Roblox/refs/heads/main/loader/list.lua")
+local gamelist = loadstring(game:HttpGet("https://raw.githubusercontent.com/bailib/Roblox/refs/heads/main/loader/list.lua"))()
 
 for name, exec in pairs(gamelist) do
     Main:Button({
