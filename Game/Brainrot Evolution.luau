@@ -52,7 +52,7 @@ Main = MainSection:Tab({ Title = "主要功能", Icon = "Sword" })
 Source = MainSection:Tab({ Title = "查看源码", Icon = "Sword" })
 
 Source:Code({
-    Code = request({Url="https://raw.githubusercontent.com/bailib/Roblox/refs/heads/main/Game/Brainrot%20Evolution"}).Body,
+    Code = request({Url="https://raw.githubusercontent.com/bailib/Roblox/refs/heads/main/Game/Brainrot%20Evolution.luau"}).Body,
 })
 
 Main:Toggle({
