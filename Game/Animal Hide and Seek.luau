@@ -155,7 +155,7 @@ Main:Toggle({
             while data["Animal Hide and Seek"].AutoWalk and wait() do
                 local nearestPlayer, minDistance = nil, math.huge
                 for _, player in ipairs(Players:GetChildren()) do
-                    if player ~= Player and player.Character then
+                    if player ~= Player and player.Character and player.Team.Name == "Hider" then
                         if player.Character:FindFirstChild("HumanoidRootPart") then
                             local distance = (player.Character.HumanoidRootPart.Position - hum.Position).Magnitude
                             if distance < minDistance then
