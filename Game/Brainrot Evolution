@@ -1,0 +1,126 @@
+local data = loadstring(game:HttpGet("https://raw.githubusercontent.com/bailib/Roblox/refs/heads/main/main/data.lua"))()
+local WindUI = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
+
+WindUI:Notify({
+    Title = "Open source",
+    Content = "By Moxiaobai",
+    Duration = 5,
+})
+
+local Players = game:GetService("Players")
+local Player = Players.LocalPlayer
+local Character = Player.Character
+local hum = Character.HumanoidRootPart
+
+local Window = WindUI:CreateWindow({
+    Title = "Brainrot Evolution",
+    Icon = "rbxassetid://129260712070622",
+    IconThemed = true,
+    Author = "By Moxiaobai",
+    Folder = "CloudHub",
+    Size = UDim2.fromOffset(300, 270),
+    Transparent = true,
+    Theme = "Dark",
+    User = {
+        Enabled = true,
+        Callback = function() print("clicked") end,
+        Anonymous = false
+    },
+    SideBarWidth = 200,
+    -- HideSearchBar = true,
+    ScrollBarEnabled = true,
+    -- Background = "rbxassetid://13511292247", -- rbxassetid only
+})
+Window:EditOpenButton({
+    Title = "打开UI",
+    Icon = "monitor",
+    CornerRadius = UDim.new(0,16),
+    StrokeThickness = 2,
+    Color = ColorSequence.new(
+        Color3.fromHex("FF0F7B"), 
+        Color3.fromHex("F89B29")
+    ),
+    Draggable = true,
+})
+
+MainSection = Window:Section({
+    Title = "主",
+    Opened = true,
+})
+
+Main = MainSection:Tab({ Title = "主要功能", Icon = "Sword" })
+Source = MainSection:Tab({ Title = "查看源码", Icon = "Sword" })
+
+Source:Code({
+    Code = request({Url="https://raw.githubusercontent.com/bailib/Roblox/refs/heads/main/Game/Animal%20Hide%20and%20Seek.luau"}).Body,
+})
+
+Main:Toggle({
+    Title = "自动攻击全图",
+    Image = "bird",
+    Value = data["Brainrot Evolution"].AttackAll,
+    Callback = function(state)
+        data["Brainrot Evolution"].AttackAll = state
+        spawn(function()
+            while data["Brainrot Evolution"].AttackAll and wait() do
+                for _, v in pairs(workspace:GetChildren()) do
+                    if v:IsA("Model") then
+                        if v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("HumanoidRootPart"):FindFirstChild("MonsterHUD") and v:FindFirstChild("Humanoid") and v:FindFirstChild("Humanoid").Health > 0 then
+                            game:GetService("ReplicatedStorage").Packages.Knit.Services.MonsterService.RF.RequestAttack:InvokeServer(CFrame.new(v:GetPivot().Position))
+                        end
+                    end
+                end
+            end
+        end)
+    end
+})
+
+Main:Toggle({
+    Title = "杀戮光环",
+    Image = "bird",
+    Value = data["Brainrot Evolution"].KillAura,
+    Callback = function(state)
+        data["Brainrot Evolution"].KillAura = state
+        spawn(function()
+            while data["Brainrot Evolution"].KillAura and wait() do
+                local closestitem = nil
+                local closestDistance = math.huge
+                for _, v in next, workspace:GetChildren() do
+                    if v:IsA("Model") then
+                        if v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("HumanoidRootPart"):FindFirstChild("MonsterHUD") and v:FindFirstChild("Humanoid") and v:FindFirstChild("Humanoid").Health > 0 then
+                            local distance = (Player.Character.HumanoidRootPart.Position - v.Character.HumanoidRootPart.Position).magnitude
+                            if distance < closestDistance then
+                                closestDistance = distance
+                                closestitem = v.Character
+                            end
+                        end
+                    end
+                end
+                if closestitem then
+                    game:GetService("ReplicatedStorage").Packages.Knit.Services.MonsterService.RF.RequestAttack:InvokeServer(CFrame.new(closestitem:GetPivot().Position))
+                end
+            end
+        end)
+    end
+})
+
+Main:Toggle({
+    Title = "传送自动攻击",
+    Image = "bird",
+    Value = data["Brainrot Evolution"].TpAttack,
+    Callback = function(state)
+        data["Brainrot Evolution"].TpAttack = state
+        spawn(function()
+            while data["Brainrot Evolution"].TpAttack and wait() do
+                for _, v in pairs(workspace:GetChildren()) do
+                    if v:IsA("Model") then
+                        if v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("HumanoidRootPart"):FindFirstChild("MonsterHUD") and v:FindFirstChild("Humanoid") and v:FindFirstChild("Humanoid").Health > 0 then
+                            hum.CFrame = v.HumanoidRootPart.CFrame
+                            game:GetService("ReplicatedStorage").Packages.Knit.Services.MonsterService.RF.RequestAttack:InvokeServer(CFrame.new(v:GetPivot().Position))
+                        end
+                    end
+                end
+            end
+        end)
+    end
+})
