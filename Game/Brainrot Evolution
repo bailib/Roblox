@@ -88,10 +88,10 @@ Main:Toggle({
                 for _, v in next, workspace:GetChildren() do
                     if v:IsA("Model") then
                         if v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("HumanoidRootPart"):FindFirstChild("MonsterHUD") and v:FindFirstChild("Humanoid") and v:FindFirstChild("Humanoid").Health > 0 then
-                            local distance = (Player.Character.HumanoidRootPart.Position - v..HumanoidRootPart.Position).magnitude
+                            local distance = (hum.Position - v.HumanoidRootPart.Position).magnitude
                             if distance < closestDistance then
                                 closestDistance = distance
-                                closestitem = v.Character
+                                closestitem = v
                             end
                         end
                     end
@@ -115,12 +115,11 @@ Main:Toggle({
                 for _, v in pairs(workspace:GetChildren()) do
                     if v:IsA("Model") then
                         if v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("HumanoidRootPart"):FindFirstChild("MonsterHUD") and v:FindFirstChild("Humanoid") and v:FindFirstChild("Humanoid").Health > 0 then
-                            item = v
+                            repeat
+                                hum.CFrame = v.HumanoidRootPart.CFrame
+                                game:GetService("ReplicatedStorage").Packages.Knit.Services.MonsterService.RF.RequestAttack:InvokeServer(CFrame.new(v:GetPivot().Position))
+                            until v.Humanoid.Health <= 0
                         end
-                        repeat
-                            hum.CFrame = item.HumanoidRootPart.CFrame
-                            game:GetService("ReplicatedStorage").Packages.Knit.Services.MonsterService.RF.RequestAttack:InvokeServer(CFrame.new(item:GetPivot().Position))
-                        until item.Humanoid.Health == 0
                     end
                 end
             end
