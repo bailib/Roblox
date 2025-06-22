@@ -1,10 +1,11 @@
 local ESP = loadstring(game:HttpGet("https://raw.githubusercontent.com/bailib/Roblox/refs/heads/main/main/ESP.lua"))()
 local data = loadstring(game:HttpGet("https://raw.githubusercontent.com/bailib/Roblox/refs/heads/main/main/data.lua"))()
+local language = loadstring(game:HttpGet("https://raw.githubusercontent.com/bailib/Roblox/refs/heads/main/main/language.lua"))()
 local WindUI = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
 
 WindUI:Notify({
-    Title = "Open source",
-    Content = "By Moxiaobai",
+    Title = language[game.Players.LocalPlayer.LocaleId].NotificationText,
+    Content = language[game.Players.LocalPlayer.LocaleId].NotificationContent,
     Duration = 5,
 })
 
@@ -17,10 +18,10 @@ local hum = Character.HumanoidRootPart
 local camera = workspace.CurrentCamera
 
 local Window = WindUI:CreateWindow({
-    Title = "Animal Hide and Seek",
+    Title = language[game.Players.LocalPlayer.LocaleId]["Animal Hide and Seek"].Title,
     Icon = "rbxassetid://129260712070622",
     IconThemed = true,
-    Author = "By Moxiaobai",
+    Author = language[game.Players.LocalPlayer.LocaleId].Author,
     Folder = "CloudHub",
     Size = UDim2.fromOffset(300, 270),
     Transparent = true,
@@ -36,7 +37,7 @@ local Window = WindUI:CreateWindow({
     -- Background = "rbxassetid://13511292247", -- rbxassetid only
 })
 Window:EditOpenButton({
-    Title = "打开UI",
+    Title = language[game.Players.LocalPlayer.LocaleId].OpenText,
     Icon = "monitor",
     CornerRadius = UDim.new(0,16),
     StrokeThickness = 2,
@@ -48,19 +49,19 @@ Window:EditOpenButton({
 })
 
 MainSection = Window:Section({
-    Title = "主",
+    Title = "main",
     Opened = true,
 })
 
-Main = MainSection:Tab({ Title = "主要功能", Icon = "Sword" })
-Source = MainSection:Tab({ Title = "查看源码", Icon = "Sword" })
+Main = MainSection:Tab({ Title = "Main", Icon = "Sword" })
+Source = MainSection:Tab({ Title = "Source", Icon = "Sword" })
 
 Source:Code({
-    Code = request({Url="https://raw.gihttps://raw.githubusercontent.com/bailib/Roblox/refs/heads/main/Game/Animal%20Hide%20and%20Seek.luau"}).Body,
+    Code = request({Url="https://raw.githubusercontent.com/bailib/Roblox/refs/heads/main/Game/Animal%20Hide%20and%20Seek.luau"}).Body,
 })
 
 Main:Toggle({
-    Title = "自瞄躲藏者",
+    Title = language[game.Players.LocalPlayer.LocaleId]["Animal Hide and Seek"].AimbotHider,
     Image = "bird",
     Value = data["Animal Hide and Seek"].AimHider,
     Callback = function(state)
@@ -89,7 +90,7 @@ Main:Toggle({
 })
 
 Main:Toggle({
-    Title = "透视躲藏者",
+    Title = language[game.Players.LocalPlayer.LocaleId]["Animal Hide and Seek"].ESPHider,
     Image = "bird",
     Value = data["Animal Hide and Seek"].ESPHider,
     Callback = function(state)
@@ -107,7 +108,7 @@ Main:Toggle({
 })
 
 Main:Toggle({
-    Title = "自动收集硬币",
+    Title = language[game.Players.LocalPlayer.LocaleId]["Animal Hide and Seek"].AutoCoin,
     Image = "bird",
     Value = data["Animal Hide and Seek"].AutoCoin,
     Callback = function(state)
@@ -126,7 +127,7 @@ Main:Toggle({
 })
 
 Main:Toggle({
-    Title = "永远成为搜捕者",
+    Title = language[game.Players.LocalPlayer.LocaleId]["Animal Hide and Seek"].AlwaysSeeker,
     Image = "bird",
     Value = data["Animal Hide and Seek"].AlwaysSeeker,
     Callback = function(state)
@@ -146,7 +147,7 @@ Main:Toggle({
 })
 
 Main:Toggle({
-    Title = "自动走向躲藏者",
+    Title = language[game.Players.LocalPlayer.LocaleId]["Animal Hide and Seek"].AutoWalk,
     Image = "bird",
     Value = data["Animal Hide and Seek"].AutoWalk,
     Callback = function(state)
