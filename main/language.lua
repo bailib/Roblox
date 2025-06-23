@@ -17,6 +17,14 @@ local language = {
       AttackAll = "攻击全部",
       KillAura = "杀戮光环",
       TpAttack = "传送攻击"
+    },
+    ["Ohio"] = {
+      Title = "俄亥俄州",
+      Aimbot = "自瞄其他玩家",
+      MeleeAura = "拳击光环",
+      KillAura = "杀戮光环",
+      MoneyPrinter = "自动印钞机(跳转服务器)",
+      Descmoneyprinter = "点以后无需动手"
     }
   },
   ["en-us"] = {
@@ -37,6 +45,14 @@ local language = {
       AttackAll = "Attack All",
       KillAura = "Kill Aura",
       TpAttack = "Teleport Attack"
+    },
+    ["Ohio"] = {
+      Title = "Ohio",
+      Aimbot = "Aimbot other players",
+      MeleeAura = "Melee Aura",
+      KillAura = "Kill Aura",
+      MoneyPrinter = "Auto Money Printer (Server Hop)",
+      Descmoneyprinter = "No need to do anything after clicking"
     }
   },
   ["en-gb"] = {
@@ -57,6 +73,14 @@ local language = {
       AttackAll = "Attack All",
       KillAura = "Kill Aura",
       TpAttack = "Teleport Attack"
+    },
+    ["Ohio"] = {
+      Title = "Ohio",
+      Aimbot = "Aimbot other players",
+      MeleeAura = "Melee Aura",
+      KillAura = "Kill Aura",
+      MoneyPrinter = "Auto Money Printer (Server Hop)",
+      Descmoneyprinter = "No need to do anything after clicking"
     }
   },
   ["ru-ru"] = {
@@ -77,6 +101,14 @@ local language = {
       AttackAll = "Атаковать всех",
       KillAura = "Аура убийства",
       TpAttack = "Телепорт атака"
+    },
+    ["Ohio"] = {
+      Title = "Огайо",
+      Aimbot = "Аимбот других игроков",
+      MeleeAura = "Аура ближнего боя",
+      KillAura = "Аура убийства",
+      MoneyPrinter = "Авто печать денег (Смена сервера)",
+      Descmoneyprinter = "Не нужно ничего делать после нажатия"
     }
   },
   ["es-es"] = {
@@ -97,6 +129,14 @@ local language = {
       AttackAll = "Atacar a todos",
       KillAura = "Aura mortal",
       TpAttack = "Ataque de teletransporte"
+    },
+    ["Ohio"] = {
+      Title = "Ohio",
+      Aimbot = "Aimbot otros jugadores",
+      MeleeAura = "Aura cuerpo a cuerpo",
+      KillAura = "Aura mortal",
+      MoneyPrinter = "Impresora de dinero automática (Cambio de servidor)",
+      Descmoneyprinter = "No hay que hacer nada después de hacer clic"
     }
   },
   ["es-mx"] = {
@@ -117,6 +157,14 @@ local language = {
       AttackAll = "Atacar a todos",
       KillAura = "Aura mortal",
       TpAttack = "Ataque de teletransporte"
+    },
+    ["Ohio"] = {
+      Title = "Ohio",
+      Aimbot = "Aimbot otros jugadores",
+      MeleeAura = "Aura cuerpo a cuerpo",
+      KillAura = "Aura mortal",
+      MoneyPrinter = "Impresora de dinero automática (Cambio de servidor)",
+      Descmoneyprinter = "No hay que hacer nada después de hacer clic"
     }
   },
   ["zh-tw"] = {
@@ -137,6 +185,14 @@ local language = {
       AttackAll = "攻擊全部",
       KillAura = "殺戮光環",
       TpAttack = "傳送攻擊"
+    },
+    ["Ohio"] = {
+      Title = "俄亥俄州",
+      Aimbot = "自瞄其他玩家",
+      MeleeAura = "拳擊光環",
+      KillAura = "殺戮光環",
+      MoneyPrinter = "自動印鈔機(跳轉伺服器)",
+      Descmoneyprinter = "點以後無需動手"
     }
   },
   ["zh-hk"] = {
@@ -157,6 +213,14 @@ local language = {
       AttackAll = "攻擊全部",
       KillAura = "殺戮光環",
       TpAttack = "傳送攻擊"
+    },
+    ["Ohio"] = {
+      Title = "俄亥俄州",
+      Aimbot = "自瞄其他玩家",
+      MeleeAura = "拳擊光環",
+      KillAura = "殺戮光環",
+      MoneyPrinter = "自動印鈔機(跳轉伺服器)",
+      Descmoneyprinter = "點以後無需動手"
     }
   },
   ["ja-jp"] = {
@@ -177,6 +241,14 @@ local language = {
       AttackAll = "全員攻撃",
       KillAura = "キルオーラ",
       TpAttack = "テレポート攻撃"
+    },
+    ["Ohio"] = {
+      Title = "オハイオ州",
+      Aimbot = "他のプレイヤーをエイムボット",
+      MeleeAura = "近接攻撃オーラ",
+      KillAura = "キルオーラ",
+      MoneyPrinter = "自動マネープリンター(サーバー移動)",
+      Descmoneyprinter = "クリック後は何もする必要ありません"
     }
   },
   ["de-de"] = {
@@ -197,7 +269,16 @@ local language = {
       AttackAll = "Alle angreifen",
       KillAura = "Todesaura",
       TpAttack = "Teleport Angriff"
+    },
+    ["Ohio"] = {
+      Title = "Ohio",
+      Aimbot = "Aimbot andere Spieler",
+      MeleeAura = "Nahkampf-Aura",
+      KillAura = "Todesaura",
+      MoneyPrinter = "Automatischer Gelddrucker (Serverwechsel)",
+      Descmoneyprinter = "Nach dem Klicken muss nichts mehr getan werden"
     }
   }
 }
+
 return language
