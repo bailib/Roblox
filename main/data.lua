@@ -10,6 +10,11 @@ local data = {
     AttackAll = false,
     KillAura = false,
     TpAttack = false
+  },
+  ["Ohio"] = {
+    Aimbot = false,
+    MeleeAura = false,
+    KillAura = false
   }
 }
 return data
