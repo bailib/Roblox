@@ -16,7 +16,10 @@ local Server, Next; repeat
     end
     Next = Servers.nextPageCursor
 until Server
-LocalPlayer.Character.Humanoid:MoveTo(LocalPlayer.Character:GetPivot().Position + Vector3.new(1, 0, 0)
+local MainScript = [[
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/bailib/Roblox/refs/heads/main/Game/MoneyPrinter.luau"))()
+]]
+LocalPlayer.Character.Humanoid:MoveTo(LocalPlayer.Character:GetPivot().Position + Vector3.new(1, 0, 0))
 for i, v in pairs(workspace.Game.Entities.ItemPickup:GetChildren()) do
     Prompt = v.PrimaryPart:FindFirstChildOfClass("ProximityPrompt")
     if Prompt.ObjectText == "Money Printer" then
@@ -24,10 +27,8 @@ for i, v in pairs(workspace.Game.Entities.ItemPickup:GetChildren()) do
         wait()
         fireproximityprompt(Prompt)
     else
+        queue_on_teleport(MainScript)
+        wait()
         game:GetService("TeleportService"):TeleportToPlaceInstance(_place,Server.id,LocalPlayer)
     end
 end
-local MainScript = [[
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/bailib/Roblox/refs/heads/main/Game/MoneyPrinter.luau"))()
-]]
-queue_on_teleport(MainScript)
