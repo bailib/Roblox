@@ -19,7 +19,11 @@ until Server
 local MainScript = [[
     loadstring(game:HttpGet("https://raw.githubusercontent.com/bailib/Roblox/refs/heads/main/Game/MoneyPrinter.luau"))()
 ]]
-LocalPlayer.Character.Humanoid:MoveTo(LocalPlayer.Character:GetPivot().Position + Vector3.new(1, 0, 0))
+
+repeat task.wait()
+    LocalPlayer.Character.Humanoid:MoveTo(LocalPlayer.Character:GetPivot().Position + Vector3.new(1, 0, 0))
+until not LocalPlayer.Character:FindFirstChild("ForceField")
+
 for i, v in pairs(workspace.Game.Entities.ItemPickup:GetChildren()) do
     Prompt = v.PrimaryPart:FindFirstChildOfClass("ProximityPrompt")
     if Prompt.ObjectText == "Money Printer" then
