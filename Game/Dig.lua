@@ -160,7 +160,7 @@ Main:Toggle({
         LocalPlayer.PlayerGui.ChildAdded:Connect(function(child)
             if child.Name == "Safezone" and main.AutoHit then
                 local holder = child:FindFirstChild("Holder")
-                if holder thenva
+                if holder then
                     local playerBar = holder:FindFirstChild("PlayerBar")
                     if playerBar then
                         local shade = playerBar:FindFirstChild("Shade")
