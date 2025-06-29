@@ -1,7 +1,7 @@
 local WindUI = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
 
 WindUI:Notify({
-    Title = "霖溺Dig",
+    Title = "open source",
     Content = "by 月星",
     Duration = 5,
 })
