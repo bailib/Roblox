@@ -169,11 +169,11 @@ Main:Toggle({
                                 if not main.Select then return end
                                 
                                 local hitAreaObj
-                                if main.Select == "Strong" then
+                                if main.Select == "完美" then
                                     hitAreaObj = shade:FindFirstChild("Area_Strong")
-                                elseif main.Select == "Normal" then
+                                elseif main.Select == "普通" then
                                     hitAreaObj = shade:FindFirstChild("Area_Hit")
-                                elseif main.Select == "Both" then
+                                elseif main.Select == "随机" then
                                     hitAreaObj = shade:FindFirstChild("Area_Strong") or shade:FindFirstChild("Area_Hit")
                                 end
                                 
